@@ -7,11 +7,19 @@ start = time.time()
 
 init_printing()
 
+# a, b, c, d, x, y = symbols('a b c d x y')
+# print(Matrix([[a, b], [c, d]]).dot(Matrix([[x, y]])))
+# ( {
+#    {a, b},
+#    {c, d}
+#   } ).({x, y })
+
 k_c = (4 * np.pi * epsilon_0) ** (-1)
 phi, theta = symbols('phi theta')
 R1, R2a, R2b, R2c = symbols('R1 R2a R2b R2c')
 l, d = symbols('l d')
 t = symbols('t')
+J = symbols('J')
 A = Matrix([0, -d])
 L2 = Matrix([l * cos(theta(t)), l * sin(theta(t))])
 L1 = -L2
@@ -21,6 +29,19 @@ Rc = L2 - A
 ra = Ra.norm(ord=2)
 rb = Rb.norm(ord=2)
 rc = Rc.norm(ord=2)
+rba = Matrix(Matrix(
+    [
+        [cos(theta(t)), -sin(theta(t))],
+        [sin(theta(t)), cos(theta(t))]
+    ]
+).dot(Matrix([-l, 0])))
+rbb = [0, 0]
+rbc = Matrix(Matrix(
+    [
+        [cos(theta(t)), -sin(theta(t))],
+        [sin(theta(t)), cos(theta(t))]
+    ]
+).dot(Matrix([l, 0])))
 Phi = Matrix([-phi, phi, phi, phi])
 R = Matrix([R1, R2a, R2b, R2c])
 d = Matrix(
@@ -38,11 +59,13 @@ q10 = q.row(0)
 q2a = q.row(1)
 q2b = q.row(2)
 q2c = q.row(3)
-print(q)
-print(q10)
 F2a = - (k_c * q10 * q2a) / ra ** 3 * Ra.T
 F2b = - (k_c * q10 * q2b) / rb ** 3 * Rb.T
 F2c = - (k_c * q10 * q2c) / rc ** 3 * Rc.T
+
+Q1 = diff(rba, theta(t)).dot(F2a) + diff(rbc, theta(t)).dot(F2c)
+T = J * (diff(theta(t), t) ** 2) / 2
+left = diff(diff(T, diff(theta(t), t)), t) - diff(t, theta(t)) - Q1
 
 # gamma = 2.234e-14
 # f = lambda phi: phi * np.abs(phi)
