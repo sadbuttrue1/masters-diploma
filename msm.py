@@ -18,5 +18,7 @@ def build_cm(R, d, n):
 
 def find_charges(R, d, n, Phi):
     Cm = build_cm(R, d, n)
-    q = k_c * Cm ** -1 * Phi
+    Cmi = Cm ** -1
+    Cmi.simplify()
+    q = k_c * Cmi * Phi
     return q
