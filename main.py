@@ -2,19 +2,12 @@ import numpy as np
 from scipy.constants import epsilon_0
 from sympy import *
 import time
+from msm import *
 
 start = time.time()
 
 init_printing()
 
-# a, b, c, d, x, y = symbols('a b c d x y')
-# print(Matrix([[a, b], [c, d]]).dot(Matrix([[x, y]])))
-# ( {
-#    {a, b},
-#    {c, d}
-#   } ).({x, y })
-
-k_c = (4 * np.pi * epsilon_0) ** (-1)
 phi, theta = symbols('phi theta')
 R1, R2a, R2b, R2c = symbols('R1 R2a R2b R2c')
 l, d = symbols('l d')
@@ -44,7 +37,7 @@ rbc = Matrix(Matrix(
 ).dot(Matrix([l, 0])))
 Phi = Matrix([-phi, phi, phi, phi])
 R = Matrix([R1, R2a, R2b, R2c])
-d = Matrix(
+D = Matrix(
     [
         [0, ra, rb, rc],
         [ra, 0, l, 2 * l],
@@ -52,9 +45,9 @@ d = Matrix(
         [rc, 2 * l, l, 0]
     ]
 )
-from msm import *
+print('Done with preps at {} seconds'.format(time.time() - start))
 
-q = find_charges(R, d, 4, Phi)
+q = find_charges(R, D, 4, Phi)
 q10 = q.row(0)
 q2a = q.row(1)
 q2b = q.row(2)
@@ -62,10 +55,24 @@ q2c = q.row(3)
 F2a = - (k_c * q10 * q2a) / ra ** 3 * Ra.T
 F2b = - (k_c * q10 * q2b) / rb ** 3 * Rb.T
 F2c = - (k_c * q10 * q2c) / rc ** 3 * Rc.T
+print('Done with forces at {} seconds'.format(time.time() - start))
 
 Q1 = diff(rba, theta(t)).dot(F2a) + diff(rbc, theta(t)).dot(F2c)
 T = J * (diff(theta(t), t) ** 2) / 2
 left = diff(diff(T, diff(theta(t), t)), t) - diff(t, theta(t)) - Q1
+print('Done with Lagrange equation at {} seconds'.format(time.time() - start))
+
+phi_ = 20000
+R2a_ = .59
+R2c_ = R2a_
+R2b_ = .65
+R1_ = .5
+l_ = 1.5
+d_ = 15
+J_ = 1000
+left = left.subs(phi, phi_).subs(R2a, R2a_).subs(R2b, R2b_).subs(R2c, R2c_).subs(R1, R1_).subs(l, l_).subs(J, J_).subs(d, d_)
+print(left)
+print('Done with substitution at {} seconds'.format(time.time() - start))
 
 # gamma = 2.234e-14
 # f = lambda phi: phi * np.abs(phi)
@@ -138,4 +145,4 @@ left = diff(diff(T, diff(theta(t), t)), t) - diff(t, theta(t)) - Q1
 # plot_to_file(sol_t, sol_theta, 't', 'theta')
 # plot_to_file(sol_t, sol_dtheta, 't', 'dtheta')
 
-print("Elapsed {} seconds".format(time.time() - start))
+print('Elapsed {} seconds'.format(time.time() - start))
