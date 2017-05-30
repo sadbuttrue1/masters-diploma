@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       158,          7]
-NotebookDataLength[     34411,       1004]
-NotebookOptionsPosition[     33863,        983]
-NotebookOutlinePosition[     34218,        999]
-CellTagsIndexPosition[     34175,        996]
+NotebookDataLength[     34506,       1006]
+NotebookOptionsPosition[     33958,        985]
+NotebookOutlinePosition[     34313,       1001]
+CellTagsIndexPosition[     34270,        998]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -206,7 +206,7 @@ Cell[BoxData[{
   RowBox[{"SetDirectory", "[", 
    RowBox[{"NotebookDirectory", "[", "]"}], "]"}], ";"}]}], "Input",
  CellChangeTimes->{{3.7048027282581997`*^9, 3.704802731081056*^9}, 
-   3.7050625150744457`*^9}],
+   3.7050625150744457`*^9, 3.705162114998582*^9}],
 
 Cell[BoxData[{
  RowBox[{
@@ -260,23 +260,42 @@ Cell[BoxData[{
  RowBox[{
   RowBox[{"v0", "=", 
    RowBox[{"D", "[", 
-    RowBox[{"r0", ",", "t"}], "]"}]}], ";"}], "\[IndentingNewLine]", 
- RowBox[{
+    RowBox[{"r0", ",", "t"}], "]"}]}], ";", 
   RowBox[{"v1", "=", 
-   RowBox[{"D", "[", 
-    RowBox[{"r1", ",", "t"}], "]"}]}], ";"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"D", "[", 
+     RowBox[{"r1", ",", "t"}], "]"}], "//", "Simplify"}]}], 
+  ";"}], "\[IndentingNewLine]", 
  RowBox[{
   RowBox[{"v2", "=", 
-   RowBox[{"D", "[", 
-    RowBox[{"r2", ",", "t"}], "]"}]}], ";", 
+   RowBox[{
+    RowBox[{"D", "[", 
+     RowBox[{"r2", ",", "t"}], "]"}], "//", "Simplify"}]}], ";", 
   RowBox[{"v3", "=", 
    RowBox[{"D", "[", 
     RowBox[{"r3", ",", "t"}], "]"}]}], ";"}]}], "Input",
  CellChangeTimes->{{3.704802734599865*^9, 3.70480273549128*^9}, {
-  3.704802901886119*^9, 3.70480290513726*^9}, {3.7048030009918633`*^9, 
-  3.704803008672814*^9}}],
+   3.704802901886119*^9, 3.70480290513726*^9}, {3.7048030009918633`*^9, 
+   3.704803008672814*^9}, {3.705068072102981*^9, 3.705068086301735*^9}, 
+   3.7051618382725363`*^9, 3.7051621517990627`*^9}],
 
 Cell[BoxData[{
+ RowBox[{
+  RowBox[{"F1", "=", 
+   RowBox[{"0", " ", 
+    FractionBox["n", 
+     SuperscriptBox[
+      RowBox[{"(", 
+       RowBox[{"R1", ".", "R1"}], ")"}], 
+      FractionBox["3", "2"]]], "R1"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"F2", "=", 
+   RowBox[{"0", 
+    FractionBox["n", 
+     SuperscriptBox[
+      RowBox[{"(", 
+       RowBox[{"R2", ".", "R2"}], ")"}], 
+      FractionBox["3", "2"]]], "R2"}]}], ";"}], "\[IndentingNewLine]", 
  RowBox[{
   RowBox[{"F3", "=", 
    RowBox[{
@@ -351,10 +370,12 @@ Cell[BoxData[{
  RowBox[{
   RowBox[{"F0", "=", 
    RowBox[{"P", "-", 
-    RowBox[{"(", "F3", ")"}], "+", "U0"}]}], ";"}]}], "Input",
+    RowBox[{"(", 
+     RowBox[{"F1", "+", "F2", "+", "F3"}], ")"}], "+", "U0"}]}], 
+  ";"}]}], "Input",
  CellChangeTimes->{{3.7048031145377417`*^9, 3.704803126113441*^9}, {
   3.704803181473233*^9, 3.704803202768075*^9}, {3.705063151058008*^9, 
-  3.705063163178911*^9}}],
+  3.705063163178911*^9}, {3.70516217471286*^9, 3.705162182390161*^9}}],
 
 Cell[BoxData[{
  RowBox[{
@@ -390,7 +411,8 @@ Cell[BoxData[{
        RowBox[{
         RowBox[{"a", "'"}], "[", "t", "]"}]}], "}"}]}], "]"}], "//", 
    "Simplify"}], ";"}]}], "Input",
- CellChangeTimes->{{3.704803538620117*^9, 3.704803541895051*^9}}],
+ CellChangeTimes->{{3.704803538620117*^9, 3.704803541895051*^9}, 
+   3.705161797029262*^9, 3.7051622068984537`*^9}],
 
 Cell[BoxData[{
  RowBox[{
@@ -456,28 +478,6 @@ Cell[BoxData[{
           RowBox[{"First", "[", "#2", "]"}], "]"}], "]"}]}], "&"}], ",", 
       "vars"}], "]"}], "//", "Simplify"}]}], ";"}], "\[IndentingNewLine]", 
  RowBox[{
-  RowBox[{"params", "=", 
-   RowBox[{"{", 
-    RowBox[{
-     RowBox[{
-      SubscriptBox["k", "x"], "\[Rule]", ".1"}], " ", ",", 
-     RowBox[{
-      SubscriptBox["k", "xt"], "\[Rule]", ".1"}], ",", 
-     RowBox[{
-      SubscriptBox["k", "\[Alpha]"], "\[Rule]", 
-      RowBox[{"-", "5"}]}], ",", 
-     RowBox[{
-      SubscriptBox["k", "\[Alpha]t"], "\[Rule]", 
-      RowBox[{"-", "2"}]}], ",", 
-     RowBox[{
-      SubscriptBox["m", "0"], "\[Rule]", "200"}], ",", 
-     RowBox[{
-      SubscriptBox["m", "3"], "\[Rule]", "1000"}], ",", 
-     RowBox[{"J", "\[Rule]", ".001000"}], ",", 
-     RowBox[{"p", "\[Rule]", ".2"}], ",", 
-     RowBox[{"n", "\[Rule]", "0.008263297560335526"}], ",", 
-     RowBox[{"l", "\[Rule]", "2"}]}], "}"}]}], ";"}], "\[IndentingNewLine]", 
- RowBox[{
   RowBox[{"tk", "=", 
    RowBox[{"3600", " ", "24", " ", "5"}]}], ";"}], "\[IndentingNewLine]", 
  RowBox[{
@@ -487,7 +487,9 @@ Cell[BoxData[{
    3.704894511294992*^9}, 3.704894554557156*^9, {3.704894965456568*^9, 
    3.704894965824709*^9}, 3.704895229256069*^9, {3.705062581265424*^9, 
    3.705062598969088*^9}, {3.705062672416648*^9, 3.705062746888777*^9}, 
-   3.7050628194652042`*^9, {3.7050631921950502`*^9, 3.70506324939748*^9}}],
+   3.7050628194652042`*^9, {3.7050631921950502`*^9, 3.70506324939748*^9}, {
+   3.705161777872879*^9, 3.705161785825279*^9}, 3.70516200870292*^9, {
+   3.70516221673909*^9, 3.705162270442398*^9}}],
 
 Cell[BoxData[{
  RowBox[{
@@ -998,14 +1000,14 @@ CellTagsIndex->{}
 *)
 (*NotebookFileOutline
 Notebook[{
-Cell[558, 20, 6889, 188, 267, "Input"],
-Cell[7450, 210, 2069, 66, 165, "Input"],
-Cell[9522, 278, 2562, 78, 140, "Input"],
-Cell[12087, 358, 1020, 34, 70, "Input"],
-Cell[13110, 394, 3355, 95, 132, "Input"],
-Cell[16468, 491, 5895, 162, 200, "Input"],
-Cell[22366, 655, 5745, 162, 200, "Input"],
-Cell[28114, 819, 5745, 162, 258, "Input"]
+Cell[558, 20, 6911, 188, 267, "Input"],
+Cell[7472, 210, 2205, 69, 148, "Input"],
+Cell[9680, 281, 3105, 96, 239, "Input"],
+Cell[12788, 379, 1070, 35, 70, "Input"],
+Cell[13861, 416, 2699, 75, 114, "Input"],
+Cell[16563, 493, 5895, 162, 200, "Input"],
+Cell[22461, 657, 5745, 162, 200, "Input"],
+Cell[28209, 821, 5745, 162, 258, "Input"]
 }
 ]
 *)
