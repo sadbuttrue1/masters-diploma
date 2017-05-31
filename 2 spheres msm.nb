@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       158,          7]
-NotebookDataLength[     45517,       1331]
-NotebookOptionsPosition[     44739,       1301]
-NotebookOutlinePosition[     45094,       1317]
-CellTagsIndexPosition[     45051,       1314]
+NotebookDataLength[     45693,       1320]
+NotebookOptionsPosition[     45148,       1300]
+NotebookOutlinePosition[     45496,       1315]
+CellTagsIndexPosition[     45453,       1312]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -631,6 +631,25 @@ Cell[BoxData[{
           RowBox[{"r3", ",", "#"}], "]"}], ".", "F3"}]}], ")"}], "&"}], "/@", 
      "vars"}], ")"}]}], ";"}], "\[IndentingNewLine]", 
  RowBox[{
+  RowBox[{"Q1", "=", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"Q", "[", 
+      RowBox[{"[", "1", "]"}], "]"}], ",", 
+     RowBox[{"Q", "[", 
+      RowBox[{"[", "2", "]"}], "]"}], ",", 
+     RowBox[{"Q", "[", 
+      RowBox[{"[", "3", "]"}], "]"}], ",", 
+     RowBox[{
+      RowBox[{"Q", "[", 
+       RowBox[{"[", "4", "]"}], "]"}], "-", 
+      RowBox[{
+       SubscriptBox["k", "\[Theta]"], 
+       RowBox[{
+        RowBox[{"\[Theta]", "'"}], "[", "t", "]"}]}]}], ",", 
+     RowBox[{"Q", "[", 
+      RowBox[{"[", "5", "]"}], "]"}]}], "}"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
   RowBox[{"eq0", "=", 
    RowBox[{"MapIndexed", "[", 
     RowBox[{
@@ -645,7 +664,7 @@ Cell[BoxData[{
              RowBox[{"#1", ",", "t"}], "]"}]}], "]"}], ",", "t"}], "]"}], "-", 
         RowBox[{"D", "[", 
          RowBox[{"ET", ",", "#1"}], "]"}]}], "\[Equal]", 
-       RowBox[{"Q", "[", 
+       RowBox[{"Q1", "[", 
         RowBox[{"[", 
          RowBox[{"First", "[", "#2", "]"}], "]"}], "]"}]}], "&"}], ",", 
      "vars"}], "]"}]}], ";"}], "\[IndentingNewLine]", 
@@ -653,7 +672,7 @@ Cell[BoxData[{
   RowBox[{"tk", "=", 
    RowBox[{"3600", " ", "24", " ", "5"}]}], ";"}], "\[IndentingNewLine]", 
  RowBox[{
-  RowBox[{"tk", "=", "3000"}], ";"}]}], "Input",
+  RowBox[{"tk", "=", "30000"}], ";"}]}], "Input",
  CellChangeTimes->{{3.704804953194661*^9, 3.7048049758426247`*^9}, {
    3.704894269575037*^9, 3.704894270138689*^9}, {3.704894498079052*^9, 
    3.704894511294992*^9}, 3.704894554557156*^9, {3.704894965456568*^9, 
@@ -661,9 +680,13 @@ Cell[BoxData[{
    3.705062598969088*^9}, {3.705062672416648*^9, 3.705062746888777*^9}, 
    3.7050628194652042`*^9, {3.7050631921950502`*^9, 3.70506324939748*^9}, {
    3.705161443927939*^9, 3.705161444376054*^9}, {3.7051628920972843`*^9, 
-   3.7051629087689734`*^9}, 3.705163111423943*^9}],
-
-Cell[CellGroupData[{
+   3.7051629087689734`*^9}, 3.705163111423943*^9, {3.705227968655061*^9, 
+   3.705227969123088*^9}, {3.7052280897519875`*^9, 3.7052281127023*^9}, 
+   3.7052282142021055`*^9, {3.705228324787431*^9, 3.7052283255904765`*^9}, 
+   3.7052286442297015`*^9, {3.7052287693528585`*^9, 3.7052287814805517`*^9}, {
+   3.705229257575783*^9, 3.7052292637671375`*^9}, {3.7052293040004387`*^9, 
+   3.705229387553217*^9}, {3.7052294681718283`*^9, 3.7052295363997307`*^9}, 
+   3.7052295833304152`*^9, {3.705229619817502*^9, 3.7052296534594264`*^9}}],
 
 Cell[BoxData[{
  RowBox[{
@@ -679,17 +702,23 @@ Cell[BoxData[{
      RowBox[{
       SubscriptBox["k", "\[Alpha]t"], "\[Rule]", "0"}], ",", 
      RowBox[{
+      SubscriptBox["k", "\[Theta]"], "\[Rule]", ".1"}], ",", 
+     RowBox[{
       SubscriptBox["m", "0"], "\[Rule]", "200"}], ",", 
      RowBox[{
       SubscriptBox["m", "3"], "\[Rule]", "1000"}], ",", 
-     RowBox[{"J", "\[Rule]", ".001000"}], ",", 
+     RowBox[{"J", "\[Rule]", "1000"}], ",", 
      RowBox[{"p", "\[Rule]", ".2"}], ",", 
      RowBox[{"\[CapitalPhi]", "\[Rule]", "20000"}], ",", 
      RowBox[{
       SubscriptBox["k", "c"], "\[Rule]", 
       RowBox[{"8.99", " ", 
        SuperscriptBox["10", "9"]}]}], ",", 
-     RowBox[{"l", "\[Rule]", "2"}]}], "}"}]}], ";"}], "\[IndentingNewLine]", 
+     RowBox[{"R2a", "\[Rule]", ".59"}], ",", 
+     RowBox[{"R2c", "\[Rule]", ".59"}], ",", 
+     RowBox[{"R2b", "\[Rule]", ".65"}], ",", 
+     RowBox[{"R1", "\[Rule]", ".5"}], ",", 
+     RowBox[{"l", "\[Rule]", "1.5"}]}], "}"}]}], ";"}], "\[IndentingNewLine]", 
  RowBox[{
   RowBox[{"sol", "=", 
    RowBox[{"NDSolve", "[", 
@@ -859,26 +888,9 @@ Cell[BoxData[{
    3.705063702366375*^9}, {3.705063912536428*^9, 3.7050639433161917`*^9}, 
    3.705161242999631*^9, {3.705161278053043*^9, 3.705161303697459*^9}, 
    3.705162750507969*^9, {3.705162931501239*^9, 3.705162943199554*^9}, {
-   3.705163249239017*^9, 3.705163319974002*^9}}],
-
-Cell[BoxData[
- RowBox[{
-  StyleBox[
-   RowBox[{"NDSolve", "::", "icfail"}], "MessageName"], 
-  RowBox[{
-  ":", " "}], "\<\"Unable to find initial conditions that satisfy the \
-residual function within specified tolerances. Try giving initial conditions \
-for both values and derivatives of the functions. \\!\\(\\*ButtonBox[\\\"\
-\[RightSkeleton]\\\", ButtonStyle->\\\"Link\\\", ButtonFrame->None, \
-ButtonData:>\\\"paclet:ref/message/NDSolve/icfail\\\", ButtonNote -> \
-\\\"NDSolve::icfail\\\"]\\)\"\>"}]], "Message", "MSG",
- CellChangeTimes->{
-  3.7051614527051888`*^9, 3.705161561064142*^9, 3.705162627471159*^9, 
-   3.705162859743265*^9, 3.70516292661053*^9, 3.705163024866551*^9, 
-   3.7051631176939573`*^9, {3.7051632621008873`*^9, 3.705163323780696*^9}}]
-}, Open  ]],
-
-Cell[CellGroupData[{
+   3.705163249239017*^9, 3.705163319974002*^9}, {3.7052279223774137`*^9, 
+   3.7052279226234283`*^9}, 3.705228272995468*^9, 3.70522833037075*^9, {
+   3.705229587010626*^9, 3.705229607476796*^9}, 3.7052297484558597`*^9}],
 
 Cell[BoxData[{
  RowBox[{
@@ -896,17 +908,23 @@ Cell[BoxData[{
       SubscriptBox["k", "\[Alpha]t"], "\[Rule]", 
       RowBox[{"-", "2"}]}], ",", 
      RowBox[{
+      SubscriptBox["k", "\[Theta]"], "\[Rule]", "1"}], ",", 
+     RowBox[{
       SubscriptBox["m", "0"], "\[Rule]", "200"}], ",", 
      RowBox[{
       SubscriptBox["m", "3"], "\[Rule]", "1000"}], ",", 
-     RowBox[{"J", "\[Rule]", ".001000"}], ",", 
+     RowBox[{"J", "\[Rule]", "1000"}], ",", 
      RowBox[{"p", "\[Rule]", ".2"}], ",", 
      RowBox[{"\[CapitalPhi]", "\[Rule]", "20000"}], ",", 
      RowBox[{
       SubscriptBox["k", "c"], "\[Rule]", 
       RowBox[{"8.99", " ", 
        SuperscriptBox["10", "9"]}]}], ",", 
-     RowBox[{"l", "\[Rule]", "2"}]}], "}"}]}], ";"}], "\[IndentingNewLine]", 
+     RowBox[{"R2a", "\[Rule]", ".59"}], ",", 
+     RowBox[{"R2c", "\[Rule]", ".59"}], ",", 
+     RowBox[{"R2b", "\[Rule]", ".65"}], ",", 
+     RowBox[{"R1", "\[Rule]", ".5"}], ",", 
+     RowBox[{"l", "\[Rule]", "1.5"}]}], "}"}]}], ";"}], "\[IndentingNewLine]", 
  RowBox[{
   RowBox[{"sol", "=", 
    RowBox[{"NDSolve", "[", 
@@ -921,7 +939,7 @@ Cell[BoxData[{
        RowBox[{
         RowBox[{"a", "[", "0", "]"}], "\[Equal]", "5.4"}], ",", 
        RowBox[{
-        RowBox[{"\[Theta]", "[", "0", "]"}], "\[Equal]", "0"}], ",", 
+        RowBox[{"\[Theta]", "[", "0", "]"}], "\[Equal]", "0.4"}], ",", 
        RowBox[{
         RowBox[{"\[Alpha]", "[", "0", "]"}], "\[Equal]", "0"}], ",", 
        RowBox[{
@@ -1067,29 +1085,15 @@ Cell[BoxData[{
   ";"}], "\[IndentingNewLine]", 
  RowBox[{
   RowBox[{"Export", "[", 
-   RowBox[{"\"\<images/2sph_msm_no_u_theta.png\>\"", ",", "%"}], "]"}], 
+   RowBox[{"\"\<images/2sph_msm_alpha_u_theta.png\>\"", ",", "%"}], "]"}], 
   ";"}]}], "Input",
  CellChangeTimes->{{3.705063777540262*^9, 3.705063781208345*^9}, {
    3.705063852989211*^9, 3.705063866458434*^9}, {3.705063947815728*^9, 
    3.705063955534602*^9}, 3.7051612549082737`*^9, 3.7051613076178102`*^9, {
-   3.705162945342409*^9, 3.705162952483979*^9}}],
-
-Cell[BoxData[
- RowBox[{
-  StyleBox[
-   RowBox[{"NDSolve", "::", "icfail"}], "MessageName"], 
-  RowBox[{
-  ":", " "}], "\<\"Unable to find initial conditions that satisfy the \
-residual function within specified tolerances. Try giving initial conditions \
-for both values and derivatives of the functions. \\!\\(\\*ButtonBox[\\\"\
-\[RightSkeleton]\\\", ButtonStyle->\\\"Link\\\", ButtonFrame->None, \
-ButtonData:>\\\"paclet:ref/message/NDSolve/icfail\\\", ButtonNote -> \
-\\\"NDSolve::icfail\\\"]\\)\"\>"}]], "Message", "MSG",
- CellChangeTimes->{3.705161462701953*^9, 3.7051626356026707`*^9, 
-  3.705162932072267*^9, 3.705163030565246*^9}]
-}, Open  ]],
-
-Cell[CellGroupData[{
+   3.705162945342409*^9, 3.705162952483979*^9}, {3.7052279252525787`*^9, 
+   3.7052279256245995`*^9}, 3.7052283622715745`*^9, {3.705228445861356*^9, 
+   3.7052284474604473`*^9}, {3.70522875924628*^9, 3.7052287606823626`*^9}, {
+   3.705229762420658*^9, 3.705229763726733*^9}, 3.705229836591901*^9}],
 
 Cell[BoxData[{
  RowBox[{
@@ -1107,17 +1111,23 @@ Cell[BoxData[{
       SubscriptBox["k", "\[Alpha]t"], "\[Rule]", 
       RowBox[{"-", "2"}]}], ",", 
      RowBox[{
+      SubscriptBox["k", "\[Theta]"], "\[Rule]", "1"}], ",", 
+     RowBox[{
       SubscriptBox["m", "0"], "\[Rule]", "200"}], ",", 
      RowBox[{
       SubscriptBox["m", "3"], "\[Rule]", "1000"}], ",", 
-     RowBox[{"J", "\[Rule]", ".001000"}], ",", 
+     RowBox[{"J", "\[Rule]", "1000"}], ",", 
      RowBox[{"p", "\[Rule]", ".2"}], ",", 
      RowBox[{"\[CapitalPhi]", "\[Rule]", "20000"}], ",", 
      RowBox[{
       SubscriptBox["k", "c"], "\[Rule]", 
       RowBox[{"8.99", " ", 
        SuperscriptBox["10", "9"]}]}], ",", 
-     RowBox[{"l", "\[Rule]", "2"}]}], "}"}]}], ";"}], "\[IndentingNewLine]", 
+     RowBox[{"R2a", "\[Rule]", ".59"}], ",", 
+     RowBox[{"R2c", "\[Rule]", ".59"}], ",", 
+     RowBox[{"R2b", "\[Rule]", ".65"}], ",", 
+     RowBox[{"R1", "\[Rule]", ".5"}], ",", 
+     RowBox[{"l", "\[Rule]", "1.5"}]}], "}"}]}], ";"}], "\[IndentingNewLine]", 
  RowBox[{
   RowBox[{"sol", "=", 
    RowBox[{"NDSolve", "[", 
@@ -1132,7 +1142,7 @@ Cell[BoxData[{
        RowBox[{
         RowBox[{"a", "[", "0", "]"}], "\[Equal]", "5.4"}], ",", 
        RowBox[{
-        RowBox[{"\[Theta]", "[", "0", "]"}], "\[Equal]", "0"}], ",", 
+        RowBox[{"\[Theta]", "[", "0", "]"}], "\[Equal]", "0.4"}], ",", 
        RowBox[{
         RowBox[{"\[Alpha]", "[", "0", "]"}], "\[Equal]", "0"}], ",", 
        RowBox[{
@@ -1278,31 +1288,19 @@ Cell[BoxData[{
   ";"}], "\[IndentingNewLine]", 
  RowBox[{
   RowBox[{"Export", "[", 
-   RowBox[{"\"\<images/2sph_msm_no_u_theta.png\>\"", ",", "%"}], "]"}], 
+   RowBox[{"\"\<images/2sph_msm_full_u_theta.png\>\"", ",", "%"}], "]"}], 
   ";"}]}], "Input",
  CellChangeTimes->{{3.705063808596492*^9, 3.7050638335722427`*^9}, {
    3.705063872142008*^9, 3.705063884450426*^9}, {3.705063961202482*^9, 
    3.7050639645106487`*^9}, 3.705161260199081*^9, 3.7051613100699987`*^9, {
-   3.705162954491314*^9, 3.705162960597767*^9}}],
-
-Cell[BoxData[
- RowBox[{
-  StyleBox[
-   RowBox[{"NDSolve", "::", "icfail"}], "MessageName"], 
-  RowBox[{
-  ":", " "}], "\<\"Unable to find initial conditions that satisfy the \
-residual function within specified tolerances. Try giving initial conditions \
-for both values and derivatives of the functions. \\!\\(\\*ButtonBox[\\\"\
-\[RightSkeleton]\\\", ButtonStyle->\\\"Link\\\", ButtonFrame->None, \
-ButtonData:>\\\"paclet:ref/message/NDSolve/icfail\\\", ButtonNote -> \
-\\\"NDSolve::icfail\\\"]\\)\"\>"}]], "Message", "MSG",
- CellChangeTimes->{3.70516293698484*^9, 3.705163035777411*^9}]
-}, Open  ]]
+   3.705162954491314*^9, 3.705162960597767*^9}, {3.7052279282127476`*^9, 
+   3.70522792860077*^9}, 3.705228368080907*^9, {3.70522845205971*^9, 
+   3.705228453013765*^9}, {3.705228764160561*^9, 3.7052287646045866`*^9}, {
+   3.705229768459004*^9, 3.70522976995809*^9}, 3.705229838653019*^9}]
 },
-WindowSize->{1235, 911},
-WindowMargins->{{4, Automatic}, {Automatic, 4}},
-FrontEndVersion->"10.3 for Mac OS X x86 (32-bit, 64-bit Kernel) (October 9, \
-2015)",
+WindowSize->{1235, 842},
+WindowMargins->{{-1703, Automatic}, {Automatic, 74}},
+FrontEndVersion->"10.3 for Microsoft Windows (64-bit) (October 9, 2015)",
 StyleDefinitions->"Default.nb"
 ]
 (* End of Notebook Content *)
@@ -1316,23 +1314,14 @@ CellTagsIndex->{}
 *)
 (*NotebookFileOutline
 Notebook[{
-Cell[558, 20, 6910, 188, 267, "Input"],
-Cell[7471, 210, 7764, 256, 654, "Input"],
-Cell[15238, 468, 2900, 84, 130, "Input"],
-Cell[18141, 554, 1020, 34, 70, "Input"],
-Cell[19164, 590, 2646, 73, 114, "Input"],
-Cell[CellGroupData[{
-Cell[21835, 667, 7104, 194, 298, "Input"],
-Cell[28942, 863, 761, 14, 24, "Message"]
-}, Open  ]],
-Cell[CellGroupData[{
-Cell[29740, 882, 6858, 192, 240, "Input"],
-Cell[36601, 1076, 638, 12, 24, "Message"]
-}, Open  ]],
-Cell[CellGroupData[{
-Cell[37276, 1093, 6856, 192, 240, "Input"],
-Cell[44135, 1287, 588, 11, 24, "Message"]
-}, Open  ]]
+Cell[558, 20, 6910, 188, 567, "Input"],
+Cell[7471, 210, 7764, 256, 745, "Input"],
+Cell[15238, 468, 2900, 84, 172, "Input"],
+Cell[18141, 554, 1020, 34, 105, "Input"],
+Cell[19164, 590, 3714, 98, 224, "Input"],
+Cell[22881, 690, 7532, 202, 510, "Input"],
+Cell[30416, 894, 7368, 201, 510, "Input"],
+Cell[37787, 1097, 7357, 201, 510, "Input"]
 }
 ]
 *)
