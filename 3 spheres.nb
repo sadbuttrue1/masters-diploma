@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       158,          7]
-NotebookDataLength[     46696,       1372]
-NotebookOptionsPosition[     45981,       1347]
-NotebookOutlinePosition[     46337,       1363]
-CellTagsIndexPosition[     46294,       1360]
+NotebookDataLength[     49859,       1455]
+NotebookOptionsPosition[     49070,       1427]
+NotebookOutlinePosition[     49426,       1443]
+CellTagsIndexPosition[     49383,       1440]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -47,6 +47,8 @@ Cell[BoxData[{
    3.7046422307209044`*^9, 3.704642235196884*^9}, {3.7048026014362803`*^9, 
    3.704802601872793*^9}}],
 
+Cell[CellGroupData[{
+
 Cell[BoxData[{
  RowBox[{
   RowBox[{"A", "=", 
@@ -64,9 +66,8 @@ Cell[BoxData[{
       RowBox[{"Sin", "[", 
        RowBox[{"\[Theta]", "[", "t", "]"}], "]"}]}]}], "}"}]}], 
   ";"}], "\[IndentingNewLine]", 
- RowBox[{
-  RowBox[{"L1", "=", 
-   RowBox[{"-", "L2"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{"L1", "=", 
+  RowBox[{"-", "L2"}]}], "\[IndentingNewLine]", 
  RowBox[{
   RowBox[{
    SubscriptBox["R", "a"], "=", 
@@ -108,7 +109,21 @@ Cell[BoxData[{
     RowBox[{"1", "/", "2"}]]}], ";"}]}], "Input",
  CellChangeTimes->{{3.704046951061146*^9, 3.704046978263829*^9}, {
   3.704048169978747*^9, 3.704048176998706*^9}, {3.704803212005309*^9, 
-  3.7048032297687473`*^9}}],
+  3.7048032297687473`*^9}, {3.705478074249061*^9, 3.705478093790845*^9}}],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"-", "l"}], " ", 
+    RowBox[{"Cos", "[", 
+     RowBox[{"\[Theta]", "[", "t", "]"}], "]"}]}], ",", 
+   RowBox[{
+    RowBox[{"-", "l"}], " ", 
+    RowBox[{"Sin", "[", 
+     RowBox[{"\[Theta]", "[", "t", "]"}], "]"}]}]}], "}"}]], "Output",
+ CellChangeTimes->{3.705478692781645*^9, 3.7054814394177933`*^9}]
+}, Open  ]],
 
 Cell[BoxData[{
  RowBox[{
@@ -215,7 +230,8 @@ Cell[BoxData[{
  CellChangeTimes->{
   3.704046980364995*^9, {3.70404701552675*^9, 3.7040470381043797`*^9}, {
    3.70404768899804*^9, 3.704047689751597*^9}, 3.7040481662223673`*^9, {
-   3.7041225123405533`*^9, 3.704122512733076*^9}}],
+   3.7041225123405533`*^9, 3.704122512733076*^9}, 3.705477855723207*^9, {
+   3.705478065599634*^9, 3.705478120904467*^9}}],
 
 Cell[BoxData[{
  RowBox[{
@@ -439,6 +455,63 @@ Cell[BoxData[{
   ";"}], "\[IndentingNewLine]", 
  RowBox[{
   RowBox[{"Export", "[", 
+   RowBox[{"\"\<images/msm_theta_d=15_no_fix.png\>\"", ",", 
+    RowBox[{"Labeled", "[", 
+     RowBox[{
+      RowBox[{"Plot", "[", 
+       RowBox[{
+        RowBox[{"{", 
+         RowBox[{"Evaluate", "[", 
+          RowBox[{
+           RowBox[{"\[Theta]", "[", "t", "]"}], "/.", "sol"}], "]"}], "}"}], 
+        ",", 
+        RowBox[{"{", 
+         RowBox[{"t", ",", "0", ",", "tk"}], "}"}], ",", 
+        RowBox[{"PlotRange", "\[Rule]", "All"}], ",", 
+        RowBox[{"ImageSize", "\[Rule]", "Large"}], ",", 
+        RowBox[{"PlotLegends", "\[Rule]", 
+         RowBox[{"{", "\"\<MSM\>\"", "}"}]}]}], "]"}], ",", 
+      RowBox[{"{", 
+       RowBox[{"\"\<t,s\>\"", ",", "\"\<\[Theta]\>\""}], "}"}], ",", 
+      RowBox[{"{", 
+       RowBox[{"Bottom", ",", "Left"}], "}"}]}], "]"}]}], "]"}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"Export", "[", 
+   RowBox[{"\"\<images/msm_flow_d=15_no_fix.png\>\"", ",", 
+    RowBox[{"Labeled", "[", 
+     RowBox[{
+      RowBox[{"Plot", "[", 
+       RowBox[{
+        RowBox[{"{", 
+         RowBox[{
+          RowBox[{"Evaluate", "[", 
+           RowBox[{
+            RowBox[{
+             RowBox[{"Qa", "[", "t", "]"}], "//.", "params"}], "/.", "sol"}], 
+           "]"}], ",", 
+          RowBox[{"Evaluate", "[", 
+           RowBox[{
+            RowBox[{
+             RowBox[{"Qc", "[", "t", "]"}], "//.", "params"}], "/.", "sol"}], 
+           "]"}]}], "}"}], ",", 
+        RowBox[{"{", 
+         RowBox[{"t", ",", "0", ",", "tk"}], "}"}], ",", 
+        RowBox[{"AxesLabel", "\[Rule]", 
+         RowBox[{"{", 
+          RowBox[{"\"\<t,s\>\"", ",", "\"\<\[Theta]\>\""}], "}"}]}], ",", 
+        RowBox[{"PlotRange", "\[Rule]", "All"}], ",", 
+        RowBox[{"ImageSize", "\[Rule]", "Large"}], ",", 
+        RowBox[{"PlotLegends", "\[Rule]", 
+         RowBox[{"{", 
+          RowBox[{"\"\<Qa\>\"", ",", "\"\<Qc\>\""}], "}"}]}]}], "]"}], ",", 
+      RowBox[{"{", 
+       RowBox[{"\"\<t,s\>\"", ",", "\"\<Q\>\""}], "}"}], ",", 
+      RowBox[{"{", 
+       RowBox[{"Bottom", ",", "Left"}], "}"}]}], "]"}]}], "]"}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"Export", "[", 
    RowBox[{"\"\<images/msm_theta_d=15.png\>\"", ",", 
     RowBox[{"Labeled", "[", 
      RowBox[{
@@ -456,7 +529,7 @@ Cell[BoxData[{
         RowBox[{"{", 
          RowBox[{"t", ",", "0", ",", "tk"}], "}"}], ",", 
         RowBox[{"PlotRange", "\[Rule]", "All"}], ",", 
-        RowBox[{"ImageSize", "\[Rule]", "Full"}], ",", 
+        RowBox[{"ImageSize", "\[Rule]", "Large"}], ",", 
         RowBox[{"PlotLegends", "\[Rule]", 
          RowBox[{"{", 
           RowBox[{"\"\<MSM\>\"", ",", "\"\<Fixed\>\""}], "}"}]}]}], "]"}], 
@@ -498,7 +571,7 @@ Cell[BoxData[{
          RowBox[{"{", 
           RowBox[{"\"\<t,s\>\"", ",", "\"\<\[Theta]\>\""}], "}"}]}], ",", 
         RowBox[{"PlotRange", "\[Rule]", "All"}], ",", 
-        RowBox[{"ImageSize", "\[Rule]", "Full"}], ",", 
+        RowBox[{"ImageSize", "\[Rule]", "Large"}], ",", 
         RowBox[{"PlotLegends", "\[Rule]", 
          RowBox[{"{", 
           RowBox[{"\"\<Qa\>\"", ",", "\"\<Qc\>\"", ",", "\"\<Fixed\>\""}], 
@@ -540,7 +613,10 @@ Cell[BoxData[{
    3.7046418899631042`*^9, 3.704641898975209*^9}, {3.704641934334777*^9, 
    3.704641945242744*^9}, {3.7046421786333447`*^9, 3.70464218565201*^9}, 
    3.704642275568398*^9, 3.704642367111195*^9, {3.70464261114715*^9, 
-   3.7046426318920107`*^9}, 3.7049523439866257`*^9}],
+   3.7046426318920107`*^9}, 3.7049523439866257`*^9, {3.705478649856398*^9, 
+   3.705478686994437*^9}, {3.7054788576496353`*^9, 3.70547888211893*^9}, {
+   3.7054813216357183`*^9, 3.705481322800716*^9}, {3.705481430315001*^9, 
+   3.705481434207223*^9}}],
 
 Cell[BoxData[{
  RowBox[{
@@ -647,7 +723,7 @@ Cell[BoxData[{
         RowBox[{"{", 
          RowBox[{"t", ",", "0", ",", "tk"}], "}"}], ",", 
         RowBox[{"PlotRange", "\[Rule]", "All"}], ",", 
-        RowBox[{"ImageSize", "\[Rule]", "Full"}], ",", 
+        RowBox[{"ImageSize", "\[Rule]", "Large"}], ",", 
         RowBox[{"PlotLegends", "\[Rule]", 
          RowBox[{"{", 
           RowBox[{"\"\<MSM\>\"", ",", "\"\<Fixed\>\""}], "}"}]}]}], "]"}], 
@@ -689,7 +765,7 @@ Cell[BoxData[{
          RowBox[{"{", 
           RowBox[{"\"\<t,s\>\"", ",", "\"\<\[Theta]\>\""}], "}"}]}], ",", 
         RowBox[{"PlotRange", "\[Rule]", "All"}], ",", 
-        RowBox[{"ImageSize", "\[Rule]", "Full"}], ",", 
+        RowBox[{"ImageSize", "\[Rule]", "Large"}], ",", 
         RowBox[{"PlotLegends", "\[Rule]", 
          RowBox[{"{", 
           RowBox[{"\"\<Qa\>\"", ",", "\"\<Qc\>\"", ",", "\"\<Fixed\>\""}], 
@@ -702,7 +778,7 @@ Cell[BoxData[{
  CellChangeTimes->{{3.704641842096449*^9, 3.7046418618813066`*^9}, {
    3.704641907479596*^9, 3.7046419193040047`*^9}, {3.704641952143949*^9, 
    3.704641982935073*^9}, {3.704642035036541*^9, 3.70464203527033*^9}, 
-   3.7049523402701387`*^9}],
+   3.7049523402701387`*^9, {3.705481414069721*^9, 3.705481416139785*^9}}],
 
 Cell[BoxData[{
  RowBox[{
@@ -809,7 +885,7 @@ Cell[BoxData[{
         RowBox[{"{", 
          RowBox[{"t", ",", "0", ",", "tk"}], "}"}], ",", 
         RowBox[{"PlotRange", "\[Rule]", "All"}], ",", 
-        RowBox[{"ImageSize", "\[Rule]", "Full"}], ",", 
+        RowBox[{"ImageSize", "\[Rule]", "Large"}], ",", 
         RowBox[{"PlotLegends", "\[Rule]", 
          RowBox[{"{", 
           RowBox[{"\"\<MSM\>\"", ",", "\"\<Fixed\>\""}], "}"}]}]}], "]"}], 
@@ -851,7 +927,7 @@ Cell[BoxData[{
          RowBox[{"{", 
           RowBox[{"\"\<t,s\>\"", ",", "\"\<\[Theta]\>\""}], "}"}]}], ",", 
         RowBox[{"PlotRange", "\[Rule]", "All"}], ",", 
-        RowBox[{"ImageSize", "\[Rule]", "Full"}], ",", 
+        RowBox[{"ImageSize", "\[Rule]", "Large"}], ",", 
         RowBox[{"PlotLegends", "\[Rule]", 
          RowBox[{"{", 
           RowBox[{"\"\<Qa\>\"", ",", "\"\<Qc\>\"", ",", "\"\<Fixed\>\""}], 
@@ -862,7 +938,8 @@ Cell[BoxData[{
        RowBox[{"Bottom", ",", "Left"}], "}"}]}], "]"}]}], "]"}], 
   ";"}]}], "Input",
  CellChangeTimes->{{3.7046427317152443`*^9, 3.704642755059299*^9}, 
-   3.70495233504992*^9, {3.704952407209858*^9, 3.704952415859639*^9}}],
+   3.70495233504992*^9, {3.704952407209858*^9, 3.704952415859639*^9}, {
+   3.705481417500162*^9, 3.7054814183775377`*^9}}],
 
 Cell[BoxData[{
  RowBox[{
@@ -969,7 +1046,7 @@ Cell[BoxData[{
         RowBox[{"{", 
          RowBox[{"t", ",", "0", ",", "tk"}], "}"}], ",", 
         RowBox[{"PlotRange", "\[Rule]", "All"}], ",", 
-        RowBox[{"ImageSize", "\[Rule]", "Full"}], ",", 
+        RowBox[{"ImageSize", "\[Rule]", "Large"}], ",", 
         RowBox[{"PlotLegends", "\[Rule]", 
          RowBox[{"{", 
           RowBox[{"\"\<MSM\>\"", ",", "\"\<Fixed\>\""}], "}"}]}]}], "]"}], 
@@ -1011,7 +1088,7 @@ Cell[BoxData[{
          RowBox[{"{", 
           RowBox[{"\"\<t,s\>\"", ",", "\"\<\[Theta]\>\""}], "}"}]}], ",", 
         RowBox[{"PlotRange", "\[Rule]", "All"}], ",", 
-        RowBox[{"ImageSize", "\[Rule]", "Full"}], ",", 
+        RowBox[{"ImageSize", "\[Rule]", "Large"}], ",", 
         RowBox[{"PlotLegends", "\[Rule]", 
          RowBox[{"{", 
           RowBox[{"\"\<Qa\>\"", ",", "\"\<Qc\>\"", ",", "\"\<Fixed\>\""}], 
@@ -1022,7 +1099,8 @@ Cell[BoxData[{
        RowBox[{"Bottom", ",", "Left"}], "}"}]}], "]"}]}], "]"}], 
   ";"}]}], "Input",
  CellChangeTimes->{{3.704642802659071*^9, 3.704642870813011*^9}, 
-   3.704952328638226*^9, {3.704952411664091*^9, 3.704952430384251*^9}}],
+   3.704952328638226*^9, {3.704952411664091*^9, 3.704952430384251*^9}, {
+   3.705481419390419*^9, 3.7054814201331673`*^9}}],
 
 Cell[BoxData[{
  RowBox[{
@@ -1129,7 +1207,7 @@ Cell[BoxData[{
         RowBox[{"{", 
          RowBox[{"t", ",", "0", ",", "tk"}], "}"}], ",", 
         RowBox[{"PlotRange", "\[Rule]", "All"}], ",", 
-        RowBox[{"ImageSize", "\[Rule]", "Full"}], ",", 
+        RowBox[{"ImageSize", "\[Rule]", "Large"}], ",", 
         RowBox[{"PlotLegends", "\[Rule]", 
          RowBox[{"{", 
           RowBox[{"\"\<MSM\>\"", ",", "\"\<Fixed\>\""}], "}"}]}]}], "]"}], 
@@ -1171,7 +1249,7 @@ Cell[BoxData[{
          RowBox[{"{", 
           RowBox[{"\"\<t,s\>\"", ",", "\"\<\[Theta]\>\""}], "}"}]}], ",", 
         RowBox[{"PlotRange", "\[Rule]", "All"}], ",", 
-        RowBox[{"ImageSize", "\[Rule]", "Full"}], ",", 
+        RowBox[{"ImageSize", "\[Rule]", "Large"}], ",", 
         RowBox[{"PlotLegends", "\[Rule]", 
          RowBox[{"{", 
           RowBox[{"\"\<Qa\>\"", ",", "\"\<Qc\>\"", ",", "\"\<Fixed\>\""}], 
@@ -1182,7 +1260,8 @@ Cell[BoxData[{
        RowBox[{"Bottom", ",", "Left"}], "}"}]}], "]"}]}], "]"}], 
   ";"}]}], "Input",
  CellChangeTimes->{{3.704642901525741*^9, 3.7046429392703238`*^9}, 
-   3.7049523244651833`*^9, {3.704952435683663*^9, 3.704952441165874*^9}}],
+   3.7049523244651833`*^9, {3.704952435683663*^9, 3.704952441165874*^9}, {
+   3.705481420819466*^9, 3.705481421617681*^9}}],
 
 Cell[BoxData[{
  RowBox[{
@@ -1289,7 +1368,7 @@ Cell[BoxData[{
         RowBox[{"{", 
          RowBox[{"t", ",", "0", ",", "tk"}], "}"}], ",", 
         RowBox[{"PlotRange", "\[Rule]", "All"}], ",", 
-        RowBox[{"ImageSize", "\[Rule]", "Full"}], ",", 
+        RowBox[{"ImageSize", "\[Rule]", "Large"}], ",", 
         RowBox[{"PlotLegends", "\[Rule]", 
          RowBox[{"{", 
           RowBox[{"\"\<MSM\>\"", ",", "\"\<Fixed\>\""}], "}"}]}]}], "]"}], 
@@ -1331,7 +1410,7 @@ Cell[BoxData[{
          RowBox[{"{", 
           RowBox[{"\"\<t,s\>\"", ",", "\"\<\[Theta]\>\""}], "}"}]}], ",", 
         RowBox[{"PlotRange", "\[Rule]", "All"}], ",", 
-        RowBox[{"ImageSize", "\[Rule]", "Full"}], ",", 
+        RowBox[{"ImageSize", "\[Rule]", "Large"}], ",", 
         RowBox[{"PlotLegends", "\[Rule]", 
          RowBox[{"{", 
           RowBox[{"\"\<Qa\>\"", ",", "\"\<Qc\>\"", ",", "\"\<Fixed\>\""}], 
@@ -1343,7 +1422,8 @@ Cell[BoxData[{
   ";"}]}], "Input",
  CellChangeTimes->{{3.704642972267405*^9, 3.704642999459049*^9}, {
    3.704952275132491*^9, 3.704952287236697*^9}, 3.7049523200599737`*^9, {
-   3.704952448036643*^9, 3.704952453142674*^9}}]
+   3.704952448036643*^9, 3.704952453142674*^9}, {3.705481422574497*^9, 
+   3.705481423417716*^9}}]
 },
 WindowSize->{1469, 1235},
 WindowMargins->{{4, Automatic}, {Automatic, 4}},
@@ -1363,17 +1443,20 @@ CellTagsIndex->{}
 (*NotebookFileOutline
 Notebook[{
 Cell[558, 20, 1206, 27, 80, "Input"],
-Cell[1767, 49, 1789, 61, 171, "Input"],
-Cell[3559, 112, 3042, 105, 271, "Input"],
-Cell[6604, 219, 2395, 80, 256, "Input"],
-Cell[9002, 301, 299, 10, 50, "Input"],
-Cell[9304, 313, 1176, 38, 46, "Input"],
-Cell[10483, 353, 7767, 189, 206, "Input"],
-Cell[18253, 544, 5634, 160, 223, "Input"],
-Cell[23890, 706, 5506, 158, 206, "Input"],
-Cell[29399, 866, 5502, 158, 206, "Input"],
-Cell[34904, 1026, 5511, 158, 206, "Input"],
-Cell[40418, 1186, 5559, 159, 264, "Input"]
+Cell[CellGroupData[{
+Cell[1789, 51, 1816, 60, 171, "Input"],
+Cell[3608, 113, 367, 11, 28, "Output"]
+}, Open  ]],
+Cell[3990, 127, 3114, 106, 271, "Input"],
+Cell[7107, 235, 2395, 80, 256, "Input"],
+Cell[9505, 317, 299, 10, 50, "Input"],
+Cell[9807, 329, 1176, 38, 46, "Input"],
+Cell[10986, 369, 10093, 249, 291, "Input"],
+Cell[21082, 620, 5682, 160, 223, "Input"],
+Cell[26767, 782, 5560, 159, 206, "Input"],
+Cell[32330, 943, 5556, 159, 206, "Input"],
+Cell[37889, 1104, 5563, 159, 206, "Input"],
+Cell[43455, 1265, 5611, 160, 206, "Input"]
 }
 ]
 *)
