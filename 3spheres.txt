@@ -1,4 +1,4 @@
-fontName = "Times";
+In[252]:= fontName = "Times";
 SetOptions[Plot, 
  FrameStyle -> Directive[Thickness[0.002], 13, fontName], 
  GridLines -> Automatic, 
@@ -6,17 +6,16 @@ SetOptions[Plot,
  LabelStyle -> (FontFamily -> fontName), ImageSize -> 300, 
  Frame -> True, PlotStyle -> Thick]; SetDirectory[
  NotebookDirectory[]];
-A = {0, -d};
+In[254]:= A = {0, -d};
 L2 = {l Cos[theta[t]], l Sin[theta[t]]};
-L1 = -L2
+L1 = -L2;
 Subscript[R, a] = L1 - A;
 Subscript[R, b] = -A;
 Subscript[R, c] = L2 - A;
 Subscript[r, a] = (Subscript[R, a].Subscript[R, a])^(1/2);
 Subscript[r, b] = (Subscript[R, b].Subscript[R, b])^(1/2);
 Subscript[r, c] = (Subscript[R, c].Subscript[R, c])^(1/2);
-{-l Cos[theta[t]], -l Sin[theta[t]]}
-Subscript[r, ba] = ( {
+In[263]:= Subscript[r, ba] = ( {
      {Cos[theta[t]], -Sin[theta[t]]},
      {Sin[theta[t]], Cos[theta[t]]}
     } ).({-l, 0 });
@@ -43,7 +42,7 @@ Cm1 = Inverse[Cm];
      {phi},
      {phi}
     } );
-Subscript[F, 
+In[269]:= Subscript[F, 
   2 a] = -((Subscript[k, c] q10 q2a)/Subscript[r, a]^3) Subscript[R, 
    a];
 Subscript[F, 
@@ -52,18 +51,18 @@ Subscript[F,
 Subscript[F, 
   2 c] = -((Subscript[k, c] q10 q2c)/Subscript[r, c]^3) Subscript[R, 
    c];
-Qa[t_] := -Subscript[k, c] q2a q10
-Qc[t_] := -Subscript[k, c] q2c q10
+Sa[t_] := -Subscript[k, c] q2a q10
+Sc[t_] := -Subscript[k, c] q2c q10
 Subscript[F, 2 a1] = 
-  Qa[t]/Subscript[r, a]^3 Subscript[R, a] //. theta[t] -> 0;
+  Sa[t]/Subscript[r, a]^3 Subscript[R, a] //. theta[t] -> 0;
 Subscript[F, 2 c1] = 
-  Qc[t]/Subscript[r, c]^3 Subscript[R, c] //. theta[t] -> 0;
-ET = (J theta'[t]^2)/2;
-Q1 = D[Subscript[r, ba], theta[t]].Subscript[F, 2 a] + 
+  Sc[t]/Subscript[r, c]^3 Subscript[R, c] //. theta[t] -> 0;
+In[276]:= ET = (J theta'[t]^2)/2;
+In[277]:= Q1 = D[Subscript[r, ba], theta[t]].Subscript[F, 2 a] + 
    D[Subscript[r, bc], theta[t]].Subscript[F, 2 c];
 Q2 = D[Subscript[r, ba], theta[t]].Subscript[F, 2 a1] + 
    D[Subscript[r, bc], theta[t]].Subscript[F, 2 c1];
-params = {phi -> 20000, Subscript[k, c] -> 8.99 10^9, R2a -> .59, 
+In[279]:= params = {phi -> 20000, Subscript[k, c] -> 8.99 10^9, R2a -> .59, 
    R2c -> .59, R2b -> .65, R1 -> .5, l -> 1.5, d -> 15, J -> 1000};
 tk = 100000;
 eq = D[D[ET, D[theta[t], t]], t] - D[ET, theta[t]] == Q1 //. params;
@@ -77,10 +76,10 @@ Export["images/msm_theta_d=15_no_fix.png",
     "theta"}, {Bottom, Left}]];
 Export["images/msm_flow_d=15_no_fix.png", 
   Labeled[
-   Plot[{Evaluate[Qa[t] //. params /. sol], 
-     Evaluate[Qc[t] //. params /. sol]}, {t, 0, tk}, 
+   Plot[{Evaluate[Sa[t] //. params /. sol], 
+     Evaluate[Sc[t] //. params /. sol]}, {t, 0, tk}, 
     AxesLabel -> {"t,s", "theta"}, PlotRange -> All, ImageSize -> Large, 
-    PlotLegends -> {"Qa", "Qc"}], {"t,s", "Q"}, {Bottom, Left}]];
+    PlotLegends -> {"Sa", "Sc"}], {"t,s", "Q"}, {Bottom, Left}]];
 Export["images/msm_theta_d=15.png", 
   Labeled[
    Plot[{Evaluate[theta[t] /. sol], Evaluate[theta[t] /. sol2]}, {t, 0, tk}, 
@@ -88,13 +87,13 @@ Export["images/msm_theta_d=15.png",
     PlotLegends -> {"MSM", "Fixed"}], {"t,s", "theta"}, {Bottom, Left}]];
 Export["images/msm_flow_d=15.png", 
   Labeled[
-   Plot[{Evaluate[Qa[t] //. params /. sol], 
-     Evaluate[Qc[t] //. params /. sol], 
-     Evaluate[Qa[t] //. params //. theta[t] -> 0]}, {t, 0, tk}, 
+   Plot[{Evaluate[Sa[t] //. params /. sol], 
+     Evaluate[Sc[t] //. params /. sol], 
+     Evaluate[Sa[t] //. params //. theta[t] -> 0]}, {t, 0, tk}, 
     AxesLabel -> {"t,s", "theta"}, PlotRange -> All, ImageSize -> Large, 
-    PlotLegends -> {"Qa", "Qc", "Fixed"}], {"t,s", "Q"}, {Bottom, 
+    PlotLegends -> {"Sa", "Sc", "Fixed"}], {"t,s", "Q"}, {Bottom, 
     Left}]];
-params = {phi -> 20000, Subscript[k, c] -> 8.99 10^9, R2a -> .59, 
+In[289]:= params = {phi -> 20000, Subscript[k, c] -> 8.99 10^9, R2a -> .59, 
    R2c -> .59, R2b -> .65, R1 -> .5, l -> 1.5, d -> 20, J -> 1000};
 tk = 150000;
 eq = D[D[ET, D[theta[t], t]], t] - D[ET, theta[t]] == Q1 //. params;
@@ -108,14 +107,14 @@ Export["images/msm_theta_d=20.png",
     PlotLegends -> {"MSM", "Fixed"}], {"t,s", "theta"}, {Bottom, Left}]];
 Export["images/msm_flow_d=20.png", 
   Labeled[
-   Plot[{Evaluate[Qa[t] //. params /. sol], 
-     Evaluate[Qc[t] //. params /. sol], 
-     Evaluate[Qa[t] //. params //. theta[t] -> 0]}, {t, 0, tk}, 
+   Plot[{Evaluate[Sa[t] //. params /. sol], 
+     Evaluate[Sc[t] //. params /. sol], 
+     Evaluate[Sa[t] //. params //. theta[t] -> 0]}, {t, 0, tk}, 
     AxesLabel -> {"t,s", "theta"}, PlotRange -> All, ImageSize -> Large, 
-    PlotLegends -> {"Qa", "Qc", "Fixed"}], {"t,s", "Q"}, {Bottom, 
+    PlotLegends -> {"Sa", "Sc", "Fixed"}], {"t,s", "Q"}, {Bottom, 
     Left}]];
 
-params = {phi -> 20000, Subscript[k, c] -> 8.99 10^9, R2a -> .59, 
+In[297]:= params = {phi -> 20000, Subscript[k, c] -> 8.99 10^9, R2a -> .59, 
    R2c -> .59, R2b -> .65, R1 -> .5, l -> 1.5, d -> 10, J -> 1000};
 tk = 50000;
 eq = D[D[ET, D[theta[t], t]], t] - D[ET, theta[t]] == Q1 //. params;
@@ -129,13 +128,13 @@ Export["images/msm_theta_d=10.png",
     PlotLegends -> {"MSM", "Fixed"}], {"t,s", "theta"}, {Bottom, Left}]];
 Export["images/msm_flow_d=10.png", 
   Labeled[
-   Plot[{Evaluate[Qa[t] //. params /. sol], 
-     Evaluate[Qc[t] //. params /. sol], 
-     Evaluate[Qa[t] //. params //. theta[t] -> 0]}, {t, 0, tk}, 
+   Plot[{Evaluate[Sa[t] //. params /. sol], 
+     Evaluate[Sc[t] //. params /. sol], 
+     Evaluate[Sa[t] //. params //. theta[t] -> 0]}, {t, 0, tk}, 
     AxesLabel -> {"t,s", "theta"}, PlotRange -> All, ImageSize -> Large, 
-    PlotLegends -> {"Qa", "Qc", "Fixed"}], {"t,s", "Q"}, {Bottom, 
+    PlotLegends -> {"Sa", "Sc", "Fixed"}], {"t,s", "Q"}, {Bottom, 
     Left}]];
-params = {phi -> 20000, Subscript[k, c] -> 8.99 10^9, R2a -> .59, 
+In[305]:= params = {phi -> 20000, Subscript[k, c] -> 8.99 10^9, R2a -> .59, 
    R2c -> .59, R2b -> .65, R1 -> .5, l -> 1.5, d -> 5, J -> 1000};
 tk = 16000;
 eq = D[D[ET, D[theta[t], t]], t] - D[ET, theta[t]] == Q1 //. params;
@@ -149,13 +148,13 @@ Export["images/msm_theta_d=5.png",
     PlotLegends -> {"MSM", "Fixed"}], {"t,s", "theta"}, {Bottom, Left}]];
 Export["images/msm_flow_d=5.png", 
   Labeled[
-   Plot[{Evaluate[Qa[t] //. params /. sol], 
-     Evaluate[Qc[t] //. params /. sol], 
-     Evaluate[Qa[t] //. params //. theta[t] -> 0]}, {t, 0, tk}, 
+   Plot[{Evaluate[Sa[t] //. params /. sol], 
+     Evaluate[Sc[t] //. params /. sol], 
+     Evaluate[Sa[t] //. params //. theta[t] -> 0]}, {t, 0, tk}, 
     AxesLabel -> {"t,s", "theta"}, PlotRange -> All, ImageSize -> Large, 
-    PlotLegends -> {"Qa", "Qc", "Fixed"}], {"t,s", "Q"}, {Bottom, 
+    PlotLegends -> {"Sa", "Sc", "Fixed"}], {"t,s", "Q"}, {Bottom, 
     Left}]];
-params = {phi -> 20000, Subscript[k, c] -> 8.99 10^9, R2a -> .59, 
+In[313]:= params = {phi -> 20000, Subscript[k, c] -> 8.99 10^9, R2a -> .59, 
    R2c -> .59, R2b -> .65, R1 -> .5, l -> 1.5, d -> 2.5, J -> 1000};
 tk = 3800;
 eq = D[D[ET, D[theta[t], t]], t] - D[ET, theta[t]] == Q1 //. params;
@@ -169,13 +168,13 @@ Export["images/msm_theta_d=2.5.png",
     PlotLegends -> {"MSM", "Fixed"}], {"t,s", "theta"}, {Bottom, Left}]];
 Export["images/msm_flow_d=2.5.png", 
   Labeled[
-   Plot[{Evaluate[Qa[t] //. params /. sol], 
-     Evaluate[Qc[t] //. params /. sol], 
-     Evaluate[Qa[t] //. params //. theta[t] -> 0]}, {t, 0, tk}, 
+   Plot[{Evaluate[Sa[t] //. params /. sol], 
+     Evaluate[Sc[t] //. params /. sol], 
+     Evaluate[Sa[t] //. params //. theta[t] -> 0]}, {t, 0, tk}, 
     AxesLabel -> {"t,s", "theta"}, PlotRange -> All, ImageSize -> Large, 
-    PlotLegends -> {"Qa", "Qc", "Fixed"}], {"t,s", "Q"}, {Bottom, 
+    PlotLegends -> {"Sa", "Sc", "Fixed"}], {"t,s", "Q"}, {Bottom, 
     Left}]];
-params = {phi -> 20000, Subscript[k, c] -> 8.99 10^9, R2a -> .59, 
+In[321]:= params = {phi -> 20000, Subscript[k, c] -> 8.99 10^9, R2a -> .59, 
    R2c -> .59, R2b -> .65, R1 -> .5, l -> 1.5, d -> 1.8, J -> 1000};
 tk = 1300;
 eq = D[D[ET, D[theta[t], t]], t] - D[ET, theta[t]] == Q1 //. params;
@@ -189,12 +188,12 @@ Export["images/msm_theta_d=1.8.png",
     PlotLegends -> {"MSM", "Fixed"}], {"t,s", "theta"}, {Bottom, Left}]];
 Export["images/msm_flow_d=1.8.png", 
   Labeled[
-   Plot[{Evaluate[Qa[t] //. params /. sol], 
-     Evaluate[Qc[t] //. params /. sol], 
-     Evaluate[Qa[t] //. params //. theta[t] -> 0]}, {t, 0, tk}, 
+   Plot[{Evaluate[Sa[t] //. params /. sol], 
+     Evaluate[Sc[t] //. params /. sol], 
+     Evaluate[Sa[t] //. params //. theta[t] -> 0]}, {t, 0, tk}, 
     AxesLabel -> {"t,s", "theta"}, PlotRange -> All, ImageSize -> Large, 
-    PlotLegends -> {"Qa", "Qc", "Fixed"}], {"t,s", "Q"}, {Bottom, 
+    PlotLegends -> {"Sa", "Sc", "Fixed"}], {"t,s", "Q"}, {Bottom, 
     Left}]];
-In[234]:= nb = InputNotebook[];
+In[329]:= nb = InputNotebook[];
 fn = FileNameJoin[{NotebookDirectory[], "3spheres.txt"}];
 FrontEndExecute[FrontEndToken[nb, "Save", {fn, "Text"}]]

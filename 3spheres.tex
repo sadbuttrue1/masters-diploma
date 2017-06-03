@@ -1,8 +1,8 @@
 \section{Моделирование движения космического аппарата, описанного тремя сферами}
 \label{sec:3sph}
 
-Опишем конкретный случай, который можно смоделировать с помощью метода многих сфер, описанного в разделе \ref{sec:msm}.
-В качестве космического аппарата будем рассматривать цилиндрическое тело, которое будет представлять собой упрощенный вариант ступени ракеты.
+Опишем конкретный случай моделирования с помощью метода многих сфер, описанного в разделе \ref{sec:msm}.
+В качестве космического аппарата будем рассматривать цилиндрическое тело, которое будет представлять собой упрощенный вариант первой ступени ракеты.
 Для перехода к электростатическому взаимодействию это тело заменим на три сферы.
 Внешняя сфера описывает аппарат, производящий уборку космического мусора.
 Для упрощения вычислений, расстояние между аппаратами $d$ будем считать постоянным.
@@ -14,8 +14,7 @@
 	\label{ris:3sph}
 \end{figure}
 
-Для моделирования взаимодействия нам нужно составить обратную матрицу ёмкостей $[C_m]^{-1}$ (\ref{eq:3sph_cm}).
-
+Для моделирования взаимодействия составим обратную матрицу ёмкостей $[C_m]^{-1}$ (\ref{eq:cm_inv}):
 \begin{equation}
 \label{eq:3sph_cm}
 	[C_m]^{-1} = 
@@ -26,10 +25,11 @@
 		1/r_c	&	1/2l		&	1/l		&	1/R_{2c}
 	\end{pmatrix},
 \end{equation}
-где $R_1$ – радиус внешней сферы, $R_{2a}$ – радиус сферы $A$ тела $2$, $R_{2b}$ – радиус сферы $B$ тела $2$, $R_{2c}$ – радиус сферы $C$ тела $2$, $l$ – расстояние между центрами соседних сфер (сферы $A$ и сферы $B$, сферы $B$ и сферы $C$), $r_a = \norm{\vec{R}_a}$ – расстояние между центром внешней сферы и центром сферы $A$ тела $2$, $r_a = \norm{\vec{R}_b}$ – расстояние между центром внешней сферы и центром сферы $B$ тела $2$, $r_c = \norm{\vec{R}_c}$ – расстояние между центром внешней сферы и центром сферы $C$ тела $2$.
-Для описания векторов $\vec{R_a}$, $\vec{R_b}$, $\vec{R_c}$ введем вектор $\vec{A}$ (\ref{eq:3sph_A}) для описания расстояния между центром тела $2$ и центром внешней сферы.
-Так же введем вектора $\vec{L}_2$ (\ref{eq:3sph_l2}) и $\vec{L}_1 = -\vec{L}_2$, описывающие расстояния между центрами сфер $B$ и $C$ и сфер $A$ и $B$ соответственно.
+где $R_1$ – радиус внешней сферы, $R_{2a}$ – радиус сферы $A$ тела $2$, $R_{2b}$ – радиус сферы $B$ тела $2$, $R_{2c}$ – радиус сферы $C$ тела $2$, $l$ – расстояние между центрами соседних сфер (сферы $A$ и сферы $B$, сферы $B$ и сферы $C$),
 
+\noindent $r_a = \norm{\vec{R}_a}$ – расстояние между центром внешней сферы и центром сферы $A$ тела $2$, $r_b = \norm{\vec{R}_b}$ – расстояние между центром внешней сферы и центром сферы $B$ тела $2$, $r_c = \norm{\vec{R}_c}$ – расстояние между центром внешней сферы и центром сферы $C$ тела $2$.
+
+Для описания векторов $\vec{R_a}$, $\vec{R_b}$, $\vec{R_c}$ введем вектор $\vec{A}$  описывающий расстояния между центром тела $2$ и центром внешней сферы:
 \begin{equation}
 \label{eq:3sph_A}
 	\vec{A} =
@@ -38,7 +38,11 @@
 		-d
 	\end{pmatrix}.
 \end{equation}
-
+Так же введем вектора $\vec{L}_1$ и $\vec{L}_2$, описывающие расстояния между центрами сфер $B$ и $C$ и сфер $A$ и $B$:
+\begin{equation}
+\label{eq:3sph_l1}
+	\vec{L}_1 = -\vec{L}_2,
+\end{equation}
 \begin{equation}
 \label{eq:3sph_l2}
 	\vec{L}_2 = 
@@ -48,8 +52,21 @@
 	\end{pmatrix}.
 \end{equation}
 
-Для расчета силы взаимодействия между сферами нам нужно числено решить уравнение (\ref{eq:3sph_q_eq}) через вычисление матрицы $C_m$ путем взятия обратной от $[C_m]^{-1}$.
+Имея (\ref{eq:3sph_A}), (\ref{eq:3sph_l1}) и (\ref{eq:3sph_l2}) запишем векторов $\vec{R_a}$, $\vec{R_b}$, $\vec{R_c}$:
+\begin{equation}
+\label{eq:3sph_Ra}
+	\vec{R}_a = \vec{L}_1 - \vec{A},
+\end{equation}
+\begin{equation}
+\label{eq:3sph_Rb}
+	\vec{R}_b = -\vec{A},
+\end{equation}
+\begin{equation}
+\label{eq:3sph_Rc}
+	\vec{R}_c = \vec{L}_2 - \vec{A}.
+\end{equation}
 
+Имея (\ref{eq:3sph_Ra}), (\ref{eq:3sph_Rb}) и (\ref{eq:3sph_Rc}) можно получить обратную матрицу к матрице $[C_m]^{-1}$ (\ref{eq:3sph_cm}), тем самым решив уравнение (\ref{eq:voltage_matr}) и получив заряды сфер:
 \begin{equation}
 \label{eq:3sph_q_eq}
 	\begin{pmatrix}
@@ -68,53 +85,24 @@
 \end{equation}
 где $q_1$ – заряд внешней сферы, $q_{2a}$ – заряд сферы $A$ тела $2$, $q_{2b}$ – заряд сферы $B$ тела $2$, $q_{2c}$ – заряд сферы $C$ тела $2$, $\phi$ – абсолютное значение напряжения для любой из сфер (оно берется одинаковым). 
 
-Для получения зависимости угла $\theta$ от времени необходимо составить уравнение Лагранжа второго рода (\ref{eq:3sph_lag}).
-
+Для получения зависимости угла $\theta$ от времени необходимо составить уравнение Лагранжа второго рода\cite{markeev}:
 \begin{equation}
 \label{eq:3sph_lag}
 	\frac{d}{dt}\frac{\partial T}{\partial \dot{q_j}} - \frac{\partial T}{\partial q_j} = Q_j,
 \end{equation}
-где $T$ – кинетическая энергия, для нашей системы записанная в выражении (\ref{eq:3sph_kin}), $q_j$ – обобщенные координаты, в нашем случае это $\theta(t)$, $Q_j$ – обобщенная сила (задается в (\ref{eq:3sph_Qj})).
-
+где $q_j$ – обобщенные координаты, в нашем случае это $\theta(t)$, $Q_j$ – обобщенная сила,$T$ – кинетическая энергия, для нашей системы записанная в выражении:
 \begin{equation}
 \label{eq:3sph_kin}
 	T = \frac{J \left(\frac{d \theta (t)}{dt}\right)^2}{2},
 \end{equation}
 где $J$ – момент инерции.
 
+Обобщенная сила для обобщенной координаты $\theta$ имеет вид:
 \begin{equation}
 \label{eq:3sph_Qj}
 	Q_\theta = \frac{\partial \vec{r}_{ba}}{\partial \theta(t)} \cdot F_{2a} + \frac{\partial \vec{r}_{bc}}{\partial \theta(t)} \cdot F_{2c},
 \end{equation}
-где вектор $\vec{r}_{ba}$ (\ref{eq:3sph_rba}) – вектор между центрами сфер $A$ и $B$, $\vec{r}_bc$ (\ref{eq:3sph_rbc}) – вектор между центрами сфер $B$ и $C$, $F_{2a}$ и $F_{2c}$ – силы электростатического взаимодействия в центре внешней сферы (\ref{eq:3sph_F2a})-(\ref{eq:3sph_F2c}).
-
-\begin{equation}
-\label{eq:3sph_rba}
-	\vec{r}_{ba} = 
-	\begin{pmatrix}
-		\cos \theta(t)	& 	-\sin \theta(t)\\
-		\sin \theta(t)	&	\cos \theta(t)
-	\end{pmatrix}
-	\cdot
-	\begin{pmatrix}
-		-l \\
-		0
-	\end{pmatrix},
-\end{equation}
-\begin{equation}
-\label{eq:3sph_rbc}
-	\vec{r}_{bc} = 
-	\begin{pmatrix}
-		\cos \theta(t)	& 	-\sin \theta(t)\\
-		\sin \theta(t)	&	\cos \theta(t)
-	\end{pmatrix}
-	\cdot
-	\begin{pmatrix}
-		l \\
-		0
-	\end{pmatrix}.
-\end{equation}
-
+где вектор $\vec{r}_{ba} = L_1$ – вектор между центрами сфер $A$ и $B$, $\vec{r}_{bc} = L_2$ – вектор между центрами сфер $B$ и $C$, $F_{2a}$ и $F_{2c}$ – силы электростатического взаимодействия в центре внешней сферы:
 \begin{equation}
 \label{eq:3sph_F2a}
 	F_{2a} = - \frac{k_c q_1 q_{2a}}{r_a^3} \vec{R}_a,
@@ -124,8 +112,10 @@
 	F_{2c} = - \frac{k_c q_1 q_{2c}}{r_c^3} \vec{R}_c.
 \end{equation}
 
-Изменение угла $\theta$ для значений параметров $\phi = 20000$В, $R_1 = .5$м, $R_{2a} = R_{2c} = 0.59$м, $R_{2b} = 0.65$м, $l = 1.5$м, $d = 15$м, $J = 1000$кг$\cdot$м${}^2$ \cite{3sph} и максимальным временем $100000$ секунд.
-Обозначим числители выражений (\ref{eq:3sph_F2a})-(\ref{eq:3sph_F2c}) $Q_a = k_c q_1 q_{2a}$ и $Q_c = k_c q_1 q_{2c}$ соответственно и назовем это перетеканием заряда (рис. \ref{ris:3sph_flow_no_fix}).
+Числено решив (\ref{eq:3sph_lag}) с учетом (\ref{eq:3sph_kin}), (\ref{eq:3sph_Qj}), (\ref{eq:3sph_F2a}) и (\ref{eq:3sph_F2c}) получим зависимость $\theta$ от времени.
+
+Изменение угла $\theta$ для значений параметров $\phi = 20000$В, $R_1 = 0.5$м, $R_{2a} = R_{2c} = 0.59$м, $R_{2b} = 0.65$м, $l = 1.5$м, $d = 15$м, $J = 1000$кг$\cdot$м${}^2$ \cite{3sph} и максимальным временем $100000$ секунд изображено на рисунке (\ref{ris:3sph_theta_no_fix}).
+Обозначим числители выражений (\ref{eq:3sph_F2a})-(\ref{eq:3sph_F2c}) $S_a = - k_c q_1 q_{2a}$ и $S_c = - k_c q_1 q_{2c}$ соответственно и назовем это перетеканием заряда (рис. \ref{ris:3sph_flow_no_fix}).
 
 \begin{figure}[H]
 	\center{\includegraphics[scale=0.7]{msm_theta_d=15_no_fix.png}}
@@ -145,73 +135,73 @@
 
 \begin{figure}[H]
 	\center{\includegraphics[scale=0.7]{msm_theta_d=20.png}}
-	\caption{Угол $\theta$ для $d=20$ и максимального времени $150000$ секунд}
+	\caption{Угол $\theta$ для $d=20$м и максимального времени $150000$ секунд}
 	\label{ris:3sph_theta_d=20}
 \end{figure}
 
 \begin{figure}[H]
 	\center{\includegraphics[scale=0.7]{msm_flow_d=20.png}}
-	\caption{Перетекание заряда для $d=20$ и максимального времени $150000$ секунд}
+	\caption{Перетекание заряда для $d=20$м и максимального времени $150000$ секунд}
 	\label{ris:3sph_flow_d=20}
 \end{figure}
 
 \begin{figure}[H]
 	\center{\includegraphics[scale=0.7]{msm_theta_d=15.png}}
-	\caption{Угол $\theta$ для $d=15$ и максимального времени $100000$ секунд}
+	\caption{Угол $\theta$ для $d=15$м и максимального времени $100000$ секунд}
 	\label{ris:3sph_theta_d=15}
 \end{figure}
 
 \begin{figure}[H]
 	\center{\includegraphics[scale=0.7]{msm_flow_d=15.png}}
-	\caption{Перетекание заряда для $d=15$ и максимального времени $100000$ секунд}
+	\caption{Перетекание заряда для $d=15$м и максимального времени $100000$ секунд}
 	\label{ris:3sph_flow_d=15}
 \end{figure}
 
 \begin{figure}[H]
 	\center{\includegraphics[scale=0.7]{msm_theta_d=10.png}}
-	\caption{Угол $\theta$ для $d=10$ и максимального времени $50000$ секунд}
+	\caption{Угол $\theta$ для $d=10$м и максимального времени $50000$ секунд}
 	\label{ris:3sph_theta_d=10}
 \end{figure}
 
 \begin{figure}[H]
 	\center{\includegraphics[scale=0.7]{msm_flow_d=10.png}}
-	\caption{Перетекание заряда для $d=10$ и максимального времени $50000$ секунд}
+	\caption{Перетекание заряда для $d=10$м и максимального времени $50000$ секунд}
 	\label{ris:3sph_flow_d=10}
 \end{figure}
 
 \begin{figure}[H]
 	\center{\includegraphics[scale=0.7]{msm_theta_d=5.png}}
-	\caption{Угол $\theta$ для $d=5$ и максимального времени $16000$ секунд}
+	\caption{Угол $\theta$ для $d=5$м и максимального времени $16000$ секунд}
 	\label{ris:3sph_theta_d=5}
 \end{figure}
 
 \begin{figure}[H]
 	\center{\includegraphics[scale=0.7]{msm_flow_d=5.png}}
-	\caption{Перетекание заряда для $d=5$ и максимального времени $16000$ секунд}
+	\caption{Перетекание заряда для $d=5$м и максимального времени $16000$ секунд}
 	\label{ris:3sph_flow_d=5}
 \end{figure}
 
 \begin{figure}[H]
 	\center{\includegraphics[scale=0.7]{{msm_theta_d=2.5}.png}}
-	\caption{Угол $\theta$ для $d=2.5$ и максимального времени $3800$ секунд}
+	\caption{Угол $\theta$ для $d=2.5$м и максимального времени $3800$ секунд}
 	\label{ris:3sph_theta_d=2.5}
 \end{figure}
 
 \begin{figure}[H]
 	\center{\includegraphics[scale=0.7]{{msm_flow_d=2.5}.png}}
-	\caption{Перетекание заряда для $d=2.5$ и максимального времени $3800$ секунд}
+	\caption{Перетекание заряда для $d=2.5$м и максимального времени $3800$ секунд}
 	\label{ris:3sph_flow_d=2.5}
 \end{figure}
 
 \begin{figure}[H]
 	\center{\includegraphics[scale=0.7]{{msm_theta_d=1.8}.png}}
-	\caption{Угол $\theta$ для $d=1.8$ и максимального времени $1300$ секунд}
+	\caption{Угол $\theta$ для $d=1.8$м и максимального времени $1300$ секунд}
 	\label{ris:3sph_theta_d=1.8}
 \end{figure}
 
 \begin{figure}[H]
 	\center{\includegraphics[scale=0.7]{{msm_flow_d=1.8}.png}}
-	\caption{Перетекание заряда для $d=1.8$ и максимального времени $1300$ секунд}
+	\caption{Перетекание заряда для $d=1.8$м и максимального времени $1300$ секунд}
 	\label{ris:3sph_flow_d=1.8}
 \end{figure}
 
