@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       158,          7]
-NotebookDataLength[     49859,       1455]
-NotebookOptionsPosition[     49070,       1427]
-NotebookOutlinePosition[     49426,       1443]
-CellTagsIndexPosition[     49383,       1440]
+NotebookDataLength[     50539,       1475]
+NotebookOptionsPosition[     49709,       1446]
+NotebookOutlinePosition[     50065,       1462]
+CellTagsIndexPosition[     50022,       1459]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -1423,7 +1423,26 @@ Cell[BoxData[{
  CellChangeTimes->{{3.704642972267405*^9, 3.704642999459049*^9}, {
    3.704952275132491*^9, 3.704952287236697*^9}, 3.7049523200599737`*^9, {
    3.704952448036643*^9, 3.704952453142674*^9}, {3.705481422574497*^9, 
-   3.705481423417716*^9}}]
+   3.705481423417716*^9}}],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"nb", "=", 
+   RowBox[{"InputNotebook", "[", "]"}]}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{"fn", "=", 
+   RowBox[{"FileNameJoin", "[", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"NotebookDirectory", "[", "]"}], ",", "\"\<3spheres.txt\>\""}], 
+     "}"}], "]"}]}], ";"}], "\n", 
+ RowBox[{"FrontEndExecute", "[", 
+  RowBox[{"FrontEndToken", "[", 
+   RowBox[{"nb", ",", "\"\<Save\>\"", ",", 
+    RowBox[{"{", 
+     RowBox[{"fn", ",", "\"\<Text\>\""}], "}"}]}], "]"}], "]"}]}], "Input",
+ CellChangeTimes->{{3.7054822903980293`*^9, 3.705482290398817*^9}, {
+  3.70548238549013*^9, 3.7054824232114277`*^9}}]
 },
 WindowSize->{1469, 1235},
 WindowMargins->{{4, Automatic}, {Automatic, 4}},
@@ -1456,7 +1475,8 @@ Cell[21082, 620, 5682, 160, 223, "Input"],
 Cell[26767, 782, 5560, 159, 206, "Input"],
 Cell[32330, 943, 5556, 159, 206, "Input"],
 Cell[37889, 1104, 5563, 159, 206, "Input"],
-Cell[43455, 1265, 5611, 160, 206, "Input"]
+Cell[43455, 1265, 5611, 160, 206, "Input"],
+Cell[49069, 1427, 636, 17, 63, "Input"]
 }
 ]
 *)
