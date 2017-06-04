@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       158,          7]
-NotebookDataLength[     45693,       1320]
-NotebookOptionsPosition[     45148,       1300]
-NotebookOutlinePosition[     45496,       1315]
-CellTagsIndexPosition[     45453,       1312]
+NotebookDataLength[     45812,       1324]
+NotebookOptionsPosition[     45260,       1303]
+NotebookOutlinePosition[     45616,       1319]
+CellTagsIndexPosition[     45573,       1316]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -390,8 +390,9 @@ Cell[BoxData[{
          SubscriptBox["r", "a"]}], 
         RowBox[{"1", "/", "R2a"}], 
         RowBox[{"1", "/", "l"}], 
-        RowBox[{
-         RowBox[{"1", "/", "2"}], "l"}]},
+        RowBox[{"1", "/", 
+         RowBox[{"(", 
+          RowBox[{"2", "l"}], ")"}]}]},
        {
         RowBox[{"1", "/", 
          SubscriptBox["r", "b"]}], 
@@ -401,8 +402,9 @@ Cell[BoxData[{
        {
         RowBox[{"1", "/", 
          SubscriptBox["r", "c"]}], 
-        RowBox[{
-         RowBox[{"1", "/", "2"}], "l"}], 
+        RowBox[{"1", "/", 
+         RowBox[{"(", 
+          RowBox[{"2", "l"}], ")"}]}], 
         RowBox[{"1", "/", "l"}], 
         RowBox[{"1", "/", "R2c"}]}
       }], ")"}]}]}], ";"}], "\[IndentingNewLine]", 
@@ -464,7 +466,8 @@ Cell[BoxData[{
    3.7051604004566717`*^9}, {3.70516053970431*^9, 3.705160547472856*^9}, {
    3.705160934047509*^9, 3.705160963681657*^9}, {3.705161028932118*^9, 
    3.705161052973301*^9}, 3.7051615544329433`*^9, {3.705162450094594*^9, 
-   3.70516247411336*^9}, {3.705162807885406*^9, 3.705162841508108*^9}}],
+   3.70516247411336*^9}, {3.705162807885406*^9, 3.705162841508108*^9}, {
+   3.705551511286766*^9, 3.705551519062489*^9}}],
 
 Cell[BoxData[
  RowBox[{
@@ -1299,8 +1302,9 @@ Cell[BoxData[{
    3.705229768459004*^9, 3.70522976995809*^9}, 3.705229838653019*^9}]
 },
 WindowSize->{1235, 842},
-WindowMargins->{{-1703, Automatic}, {Automatic, 74}},
-FrontEndVersion->"10.3 for Microsoft Windows (64-bit) (October 9, 2015)",
+WindowMargins->{{0, Automatic}, {Automatic, 74}},
+FrontEndVersion->"10.3 for Mac OS X x86 (32-bit, 64-bit Kernel) (October 9, \
+2015)",
 StyleDefinitions->"Default.nb"
 ]
 (* End of Notebook Content *)
@@ -1314,14 +1318,14 @@ CellTagsIndex->{}
 *)
 (*NotebookFileOutline
 Notebook[{
-Cell[558, 20, 6910, 188, 567, "Input"],
-Cell[7471, 210, 7764, 256, 745, "Input"],
-Cell[15238, 468, 2900, 84, 172, "Input"],
-Cell[18141, 554, 1020, 34, 105, "Input"],
-Cell[19164, 590, 3714, 98, 224, "Input"],
-Cell[22881, 690, 7532, 202, 510, "Input"],
-Cell[30416, 894, 7368, 201, 510, "Input"],
-Cell[37787, 1097, 7357, 201, 510, "Input"]
+Cell[558, 20, 6910, 188, 267, "Input"],
+Cell[7471, 210, 7876, 259, 654, "Input"],
+Cell[15350, 471, 2900, 84, 130, "Input"],
+Cell[18253, 557, 1020, 34, 70, "Input"],
+Cell[19276, 593, 3714, 98, 132, "Input"],
+Cell[22993, 693, 7532, 202, 260, "Input"],
+Cell[30528, 897, 7368, 201, 260, "Input"],
+Cell[37899, 1100, 7357, 201, 260, "Input"]
 }
 ]
 *)

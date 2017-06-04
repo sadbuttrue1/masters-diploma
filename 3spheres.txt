@@ -1,4 +1,4 @@
-In[252]:= fontName = "Times";
+In[81]:= fontName = "Times";
 SetOptions[Plot, 
  FrameStyle -> Directive[Thickness[0.002], 13, fontName], 
  GridLines -> Automatic, 
@@ -6,7 +6,7 @@ SetOptions[Plot,
  LabelStyle -> (FontFamily -> fontName), ImageSize -> 300, 
  Frame -> True, PlotStyle -> Thick]; SetDirectory[
  NotebookDirectory[]];
-In[254]:= A = {0, -d};
+In[83]:= A = {0, -d};
 L2 = {l Cos[theta[t]], l Sin[theta[t]]};
 L1 = -L2;
 Subscript[R, a] = L1 - A;
@@ -15,7 +15,7 @@ Subscript[R, c] = L2 - A;
 Subscript[r, a] = (Subscript[R, a].Subscript[R, a])^(1/2);
 Subscript[r, b] = (Subscript[R, b].Subscript[R, b])^(1/2);
 Subscript[r, c] = (Subscript[R, c].Subscript[R, c])^(1/2);
-In[263]:= Subscript[r, ba] = ( {
+In[92]:= Subscript[r, ba] = ( {
      {Cos[theta[t]], -Sin[theta[t]]},
      {Sin[theta[t]], Cos[theta[t]]}
     } ).({-l, 0 });
@@ -26,9 +26,9 @@ Subscript[r, bc] = ( {
     } ).({l, 0 });
 Cm = Subscript[k, c] ( {
      {1/R1, 1/Subscript[r, a], 1/Subscript[r, b], 1/Subscript[r, c]},
-     {1/Subscript[r, a], 1/R2a, 1/l, 1/2 l},
+     {1/Subscript[r, a], 1/R2a, 1/l, 1/(2 l)},
      {1/Subscript[r, b], 1/l, 1/R2b, 1/l},
-     {1/Subscript[r, c], 1/2 l, 1/l, 1/R2c}
+     {1/Subscript[r, c], 1/(2 l), 1/l, 1/R2c}
     } );
 Cm1 = Inverse[Cm];
 ( {
@@ -42,7 +42,7 @@ Cm1 = Inverse[Cm];
      {phi},
      {phi}
     } );
-In[269]:= Subscript[F, 
+In[98]:= Subscript[F, 
   2 a] = -((Subscript[k, c] q10 q2a)/Subscript[r, a]^3) Subscript[R, 
    a];
 Subscript[F, 
@@ -57,12 +57,12 @@ Subscript[F, 2 a1] =
   Sa[t]/Subscript[r, a]^3 Subscript[R, a] //. theta[t] -> 0;
 Subscript[F, 2 c1] = 
   Sc[t]/Subscript[r, c]^3 Subscript[R, c] //. theta[t] -> 0;
-In[276]:= ET = (J theta'[t]^2)/2;
-In[277]:= Q1 = D[Subscript[r, ba], theta[t]].Subscript[F, 2 a] + 
+In[105]:= ET = (J theta'[t]^2)/2;
+In[106]:= Q1 = D[Subscript[r, ba], theta[t]].Subscript[F, 2 a] + 
    D[Subscript[r, bc], theta[t]].Subscript[F, 2 c];
 Q2 = D[Subscript[r, ba], theta[t]].Subscript[F, 2 a1] + 
    D[Subscript[r, bc], theta[t]].Subscript[F, 2 c1];
-In[279]:= params = {phi -> 20000, Subscript[k, c] -> 8.99 10^9, R2a -> .59, 
+In[108]:= params = {phi -> 20000, Subscript[k, c] -> 8.99 10^9, R2a -> .59, 
    R2c -> .59, R2b -> .65, R1 -> .5, l -> 1.5, d -> 15, J -> 1000};
 tk = 100000;
 eq = D[D[ET, D[theta[t], t]], t] - D[ET, theta[t]] == Q1 //. params;
@@ -93,7 +93,7 @@ Export["images/msm_flow_d=15.png",
     AxesLabel -> {"t,s", "theta"}, PlotRange -> All, ImageSize -> Large, 
     PlotLegends -> {"Sa", "Sc", "Fixed"}], {"t,s", "Q"}, {Bottom, 
     Left}]];
-In[289]:= params = {phi -> 20000, Subscript[k, c] -> 8.99 10^9, R2a -> .59, 
+In[118]:= params = {phi -> 20000, Subscript[k, c] -> 8.99 10^9, R2a -> .59, 
    R2c -> .59, R2b -> .65, R1 -> .5, l -> 1.5, d -> 20, J -> 1000};
 tk = 150000;
 eq = D[D[ET, D[theta[t], t]], t] - D[ET, theta[t]] == Q1 //. params;
@@ -114,7 +114,7 @@ Export["images/msm_flow_d=20.png",
     PlotLegends -> {"Sa", "Sc", "Fixed"}], {"t,s", "Q"}, {Bottom, 
     Left}]];
 
-In[297]:= params = {phi -> 20000, Subscript[k, c] -> 8.99 10^9, R2a -> .59, 
+In[126]:= params = {phi -> 20000, Subscript[k, c] -> 8.99 10^9, R2a -> .59, 
    R2c -> .59, R2b -> .65, R1 -> .5, l -> 1.5, d -> 10, J -> 1000};
 tk = 50000;
 eq = D[D[ET, D[theta[t], t]], t] - D[ET, theta[t]] == Q1 //. params;
@@ -134,7 +134,7 @@ Export["images/msm_flow_d=10.png",
     AxesLabel -> {"t,s", "theta"}, PlotRange -> All, ImageSize -> Large, 
     PlotLegends -> {"Sa", "Sc", "Fixed"}], {"t,s", "Q"}, {Bottom, 
     Left}]];
-In[305]:= params = {phi -> 20000, Subscript[k, c] -> 8.99 10^9, R2a -> .59, 
+In[134]:= params = {phi -> 20000, Subscript[k, c] -> 8.99 10^9, R2a -> .59, 
    R2c -> .59, R2b -> .65, R1 -> .5, l -> 1.5, d -> 5, J -> 1000};
 tk = 16000;
 eq = D[D[ET, D[theta[t], t]], t] - D[ET, theta[t]] == Q1 //. params;
@@ -154,7 +154,7 @@ Export["images/msm_flow_d=5.png",
     AxesLabel -> {"t,s", "theta"}, PlotRange -> All, ImageSize -> Large, 
     PlotLegends -> {"Sa", "Sc", "Fixed"}], {"t,s", "Q"}, {Bottom, 
     Left}]];
-In[313]:= params = {phi -> 20000, Subscript[k, c] -> 8.99 10^9, R2a -> .59, 
+In[142]:= params = {phi -> 20000, Subscript[k, c] -> 8.99 10^9, R2a -> .59, 
    R2c -> .59, R2b -> .65, R1 -> .5, l -> 1.5, d -> 2.5, J -> 1000};
 tk = 3800;
 eq = D[D[ET, D[theta[t], t]], t] - D[ET, theta[t]] == Q1 //. params;
@@ -174,7 +174,7 @@ Export["images/msm_flow_d=2.5.png",
     AxesLabel -> {"t,s", "theta"}, PlotRange -> All, ImageSize -> Large, 
     PlotLegends -> {"Sa", "Sc", "Fixed"}], {"t,s", "Q"}, {Bottom, 
     Left}]];
-In[321]:= params = {phi -> 20000, Subscript[k, c] -> 8.99 10^9, R2a -> .59, 
+In[150]:= params = {phi -> 20000, Subscript[k, c] -> 8.99 10^9, R2a -> .59, 
    R2c -> .59, R2b -> .65, R1 -> .5, l -> 1.5, d -> 1.8, J -> 1000};
 tk = 1300;
 eq = D[D[ET, D[theta[t], t]], t] - D[ET, theta[t]] == Q1 //. params;
@@ -194,6 +194,7 @@ Export["images/msm_flow_d=1.8.png",
     AxesLabel -> {"t,s", "theta"}, PlotRange -> All, ImageSize -> Large, 
     PlotLegends -> {"Sa", "Sc", "Fixed"}], {"t,s", "Q"}, {Bottom, 
     Left}]];
-In[329]:= nb = InputNotebook[];
+In[158]:= nb = InputNotebook[];
 fn = FileNameJoin[{NotebookDirectory[], "3spheres.txt"}];
 FrontEndExecute[FrontEndToken[nb, "Save", {fn, "Text"}]]
+	
