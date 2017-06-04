@@ -1,0 +1,147 @@
+In[1]:= fontName = "Times";
+SetOptions[Plot, 
+  FrameStyle -> Directive[Thickness[0.002], 13, fontName], 
+  GridLines -> Automatic, 
+  GridLinesStyle -> Directive[Thickness[0.001], Black], 
+  LabelStyle -> (FontFamily -> fontName), ImageSize -> 300, 
+  Frame -> True, PlotStyle -> Thick];
+SetOptions[ParametricPlot, 
+  FrameStyle -> Directive[Thickness[0.002], 13, fontName], 
+  GridLines -> Automatic, 
+  GridLinesStyle -> Directive[Thickness[0.001], Black], 
+  LabelStyle -> (FontFamily -> fontName), ImageSize -> 400, 
+  Frame -> True, PlotStyle -> Thick];
+SetOptions[ParametricPlot3D,
+  BoxStyle -> Directive[Thickness[0.002], 13, fontName], 
+  LabelStyle -> (FontFamily -> fontName), ImageSize -> 400];
+SetOptions[ListPlot, 
+  FrameStyle -> Directive[Thickness[0.002], 13, fontName], 
+  GridLines -> Automatic, 
+  GridLinesStyle -> Directive[Thickness[0.001], Black], 
+  LabelStyle -> (FontFamily -> fontName), ImageSize -> 400, 
+  Frame -> True, PlotStyle -> Thick];
+SetOptions[Histogram, 
+  FrameStyle -> Directive[Thickness[0.002], 13, fontName], 
+  LabelStyle -> (FontFamily -> fontName), ImageSize -> 600, 
+  Frame -> True];
+In[9]:= r0 = {x[t], y[t]};
+A = {-a[t] Sin[alpha[t]], a[t] Cos[alpha[t]]};
+L = {-l Sin[alpha[t] - theta[t]], l Cos[alpha[t] - theta[t]]};
+r3 = r0 + A; r2 = r3 + L; r1 = r3 - L;
+v0 = D[r0, t]; v1 = D[r1, t] // Simplify;
+v2 = D[r2, t] // Simplify; v3 = D[r3, t];
+Subscript[R, a] = r1 - r0;
+Subscript[R, b] = r2 - r0;
+Subscript[R, c] = r3 - r0;
+Subscript[r, a] = (Subscript[R, a].Subscript[R, a])^(1/2);
+Subscript[r, b] = (Subscript[R, b].Subscript[R, b])^(1/2);
+Subscript[r, c] = (Subscript[R, c].Subscript[R, c])^(1/2);
+Cm = Subscript[k, c] ( {
+     {1/R1, 1/Subscript[r, a], 1/Subscript[r, b], 1/Subscript[r, c]},
+     {1/Subscript[r, a], 1/R2a, 1/l, 1/(2 l)},
+     {1/Subscript[r, b], 1/l, 1/R2b, 1/l},
+     {1/Subscript[r, c], 1/(2 l), 1/l, 1/R2c}
+    } );
+Cm1 = Inverse[Cm];
+( {
+    {q10},
+    {q2a},
+    {q2b},
+    {q2c}
+   } ) = Cm1.( {
+     {-phi},
+     {phi},
+     {phi},
+     {phi}
+    } );
+F1 = -((Subscript[k, c] q10 q2a)/Subscript[r, a]^3) Subscript[R, a];
+F2 = -((Subscript[k, c] q10 q2b)/Subscript[r, b]^3) Subscript[R, b];
+F3 = -((Subscript[k, c] q10 q2c)/Subscript[r, c]^3) Subscript[R, c];
+In[27]:= P = p/a[t] A;
+U0 = {Cos[
+      alpha[t]] (( 
+        Subscript[k, alpha] Sin[alpha[t]] + 
+         Subscript[k, alphat] Derivative[1][alpha][t]) + 
+       Subscript[k, x] x[t] + Subscript[k, xt] x'[t]), 
+    Sin[alpha[
+       t]] ((Subscript[k, alpha] Sin[alpha[t]] + 
+         Subscript[k, alphat] Derivative[1][alpha][t]) + 
+       Subscript[k, x] x[t] + Subscript[k, xt] x'[t])} // Simplify;
+Series[U0, {alpha[t], 0, 1}];
+F0 = P - (F1 + F2 + F3) + U0;
+In[31]:= ET = Subscript[m, 0] v0.v0/2 + Subscript[m, 3] v3.v3/2 + (J theta'[t]^2)/
+    2 // FullSimplify;
+Collect[%, {x'[t], y'[t], alpha'[t], a'[t]}] // Simplify;
+In[33]:= vars = {r0, a[t], theta[t], alpha[t]} // Flatten;
+vars1 = Flatten[{r0, a[t], theta[t], alpha[t], Derivative[1][alpha][t]}];
+Q = ((D[r0, #].F0 + D[r1, #].F1 + D[r2, #].F2 + D[r3, #].F3) & /@ 
+    vars);
+Q1 = {Q[[1]], Q[[2]], Q[[3]], Q[[4]] - Subscript[k, theta] theta'[t], 
+   Q[[5]]};
+eq0 = MapIndexed[
+   D[D[ET, D[#1, t]], t] - D[ET, #1] == Q1[[First[#2]]] &, vars];
+tk = 3600 24 5;
+tk = 30000;
+In[40]:= params = {Subscript[k, x] -> .1 , Subscript[k, xt] -> .1, 
+   Subscript[k, alpha] -> -5, Subscript[k, alphat] -> -2, 
+   Subscript[k, theta] -> 0.0, Subscript[m, 0] -> 200, 
+   Subscript[m, 3] -> 1000, J -> 1000, p -> .2, phi -> 20000, 
+   Subscript[k, c] -> 8.99 10^9, R2a -> .59, R2c -> .59, R2b -> .65, 
+   R1 -> .5, l -> 1.5};
+sol = NDSolve[{eq0 //. params, x[0] == 0, y[0] == 0, a[0] == 5.4, 
+    theta[0] == 0.4, alpha[0] == 0, x'[0] == 0, y'[0] == 0, a'[0] == 0, 
+    theta'[0] == 0, alpha'[0] == 0.01}, vars1, {t, 0, tk}, 
+   Method -> {"EquationSimplification" -> "Residual"}];
+Labeled[Plot[{Evaluate[a[t] /. sol]}, {t, 0, tk}, PlotRange -> All, 
+   ImageSize -> Large, PlotLegends -> {"a(t)"}], {"t,s", 
+   "a"}, {Bottom, Left}];
+Export["images/2sph_msm_no_u_a.png", %];
+Labeled[Plot[{Evaluate[alpha[t] /. sol]}, {t, 0, tk}, PlotRange -> All, 
+   ImageSize -> Large, PlotLegends -> {"alpha(t)"}], {"t,s", 
+   "alpha"}, {Bottom, Left}];
+Export["images/2sph_msm_no_u_alpha.png", %];
+Labeled[Plot[{Evaluate[x[t] /. sol]}, {t, 0, tk}, PlotRange -> All, 
+   ImageSize -> Large, PlotLegends -> {"x(t)"}], {"t,s", 
+   "x"}, {Bottom, Left}];
+Export["images/2sph_msm_no_u_x.png", %];
+Labeled[Plot[{Evaluate[y[t] /. sol]}, {t, 0, tk}, PlotRange -> All, 
+   ImageSize -> Large, PlotLegends -> {"y(t)"}], {"t,s", 
+   "y"}, {Bottom, Left}];
+Export["images/2sph_msm_no_u_y.png", %];
+Labeled[Plot[{Evaluate[theta[t] /. sol]}, {t, 0, tk}, PlotRange -> All, 
+   ImageSize -> Large, PlotLegends -> {"theta(t)"}], {"t,s", 
+   "theta"}, {Bottom, Left}];
+Export["images/2sph_msm_no_u_theta.png", %];
+In[52]:= params = {Subscript[k, x] -> .1 , Subscript[k, xt] -> .1, 
+   Subscript[k, alpha] -> -5, Subscript[k, alphat] -> -2, 
+   Subscript[k, theta] -> .1, Subscript[m, 0] -> 200, 
+   Subscript[m, 3] -> 1000, J -> 1000, p -> .2, phi -> 20000, 
+   Subscript[k, c] -> 8.99 10^9, R2a -> .59, R2c -> .59, R2b -> .65, 
+   R1 -> .5, l -> 1.5};
+sol = NDSolve[{eq0 //. params, x[0] == 0, y[0] == 0, a[0] == 5.4, 
+    theta[0] == 0.4, alpha[0] == 0, x'[0] == 0, y'[0] == 0, a'[0] == 0, 
+    theta'[0] == 0, alpha'[0] == 0.01}, vars1, {t, 0, tk}, 
+   Method -> {"EquationSimplification" -> "Residual"}];
+Labeled[Plot[{Evaluate[a[t] /. sol]}, {t, 0, tk}, PlotRange -> All, 
+   ImageSize -> Large, PlotLegends -> {"a(t)"}], {"t,s", 
+   "a"}, {Bottom, Left}];
+Export["images/2sph_msm_full_u_a.png", %];
+Labeled[Plot[{Evaluate[alpha[t] /. sol]}, {t, 0, tk}, PlotRange -> All, 
+   ImageSize -> Large, PlotLegends -> {"alpha(t)"}], {"t,s", 
+   "alpha"}, {Bottom, Left}];
+Export["images/2sph_msm_full_u_alpha.png", %];
+Labeled[Plot[{Evaluate[x[t] /. sol]}, {t, 0, tk}, PlotRange -> All, 
+   ImageSize -> Large, PlotLegends -> {"x(t)"}], {"t,s", 
+   "x"}, {Bottom, Left}];
+Export["images/2sph_msm_full_u_x.png", %];
+Labeled[Plot[{Evaluate[y[t] /. sol]}, {t, 0, tk}, PlotRange -> All, 
+   ImageSize -> Large, PlotLegends -> {"y(t)"}], {"t,s", 
+   "y"}, {Bottom, Left}];
+Export["images/2sph_msm_full_u_y.png", %];
+Labeled[Plot[{Evaluate[theta[t] /. sol]}, {t, 0, tk}, PlotRange -> All, 
+   ImageSize -> Large, PlotLegends -> {"theta(t)"}], {"t,s", 
+   "theta"}, {Bottom, Left}];
+Export["images/2sph_msm_full_u_theta.png", %];
+In[67]:= nb = InputNotebook[];
+fn = FileNameJoin[{NotebookDirectory[], "2spheres_msm.txt"}];
+FrontEndExecute[FrontEndToken[nb, "Save", {fn, "Text"}]]
