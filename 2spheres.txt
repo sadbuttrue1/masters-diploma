@@ -1,4 +1,4 @@
-In[270]:= fontName = "Times";
+In[460]:= fontName = "Times";
 SetOptions[Plot, 
   FrameStyle -> Directive[Thickness[0.002], 13, fontName], 
   GridLines -> Automatic, 
@@ -24,48 +24,32 @@ SetOptions[Histogram,
   FrameStyle -> Directive[Thickness[0.002], 13, fontName], 
   LabelStyle -> (FontFamily -> fontName), ImageSize -> 600, 
   Frame -> True];
-Traditional[expr_] := 
-  TraditionalForm[
-   If[ListQ[expr], Column[expr //. {x_[t] -> x], expr //. {x_[t] -> x}]];
-vRuleT = {theta[t] -> theta, theta'[t] -> theta', 
-  x'[t] -> x', y'[t] -> y', z'[t] -> z', a'[t] -> a', 
-  alpha'[t] -> alpha', x[t] -> x, y[t] -> y, z[t] -> z, 
-  a[t] -> a, alpha[t] -> alpha}; 
-TraditionalT[names_, expressions_] := 
- MapThread[Equal, {names, expressions}] /. vRuleT // TableForm // 
-  TraditionalForm; SetDirectory[NotebookDirectory[]];
-In[278]:= r0 = {x[t], y[t]};
+In[468]:= r0 = {x[t], y[t]};
 A = {-a[t] Sin[alpha[t]], a[t] Cos[alpha[t]]};
 L = {-l Sin[alpha[t] - theta[t]], l Cos[alpha[t] - theta[t]]};
 r3 = r0 + A; r2 = r3 + L; r1 = r3 - L;
 R1 = r1 - r0;   R2 = r2 - r0;
 v0 = D[r0, t]; v1 = D[r1, t] // Simplify;
 v2 = D[r2, t] // Simplify; v3 = D[r3, t];
-In[285]:= F1 = 0 n/(R1.R1)^(3/2) R1;
+In[475]:= F1 = 0 n/(R1.R1)^(3/2) R1;
 F2 = 0 n/(R2.R2)^(3/2) R2;
 F3 = n/a[t]^3 A;
 P = p/a[t] A;
 U0 = {Cos[
-     alpha[t]] (( 
-       Subscript[k, alpha] Sin[alpha[t]] + 
-        Subscript[k, alphat] Derivative[1][alpha][t]) + Subscript[k, x] x[t] +
-       Subscript[k, xt] x'[t]), 
-   Sin[alpha[
-      t]] ((Subscript[k, alpha] Sin[alpha[t]] + 
-        Subscript[k, alphat] Derivative[1][alpha][t]) + Subscript[k, x] x[t] +
-       Subscript[k, xt] x'[t])} // Simplify
+      alpha[t]] (( 
+        Subscript[k, alpha] Sin[alpha[t]] + 
+         Subscript[k, alphat] Derivative[1][alpha][t]) + 
+       Subscript[k, x] x[t] + Subscript[k, xt] x'[t]), 
+    Sin[alpha[
+       t]] ((Subscript[k, alpha] Sin[alpha[t]] + 
+         Subscript[k, alphat] Derivative[1][alpha][t]) + 
+       Subscript[k, x] x[t] + Subscript[k, xt] x'[t])} // Simplify;
 Series[U0, {alpha[t], 0, 1}];
 F0 = P - (F1 + F2 + F3) + U0;
-Out[289]= {Cos[alpha[t]] (Sin[alpha[t]] Subscript[k, alpha] + Subscript[k, x] x[t] + 
-    Subscript[k, xt] Derivative[1][x][t] + 
-    Subscript[k, alphat] Derivative[1][alpha][t]), 
- Sin[alpha[t]] (Sin[alpha[t]] Subscript[k, alpha] + Subscript[k, x] x[t] + 
-    Subscript[k, xt] Derivative[1][x][t] + 
-    Subscript[k, alphat] Derivative[1][alpha][t])}
-In[292]:= ET = Subscript[m, 0] v0.v0/2 + Subscript[m, 3] v3.v3/2 + (J theta'[t]^2)/
+In[482]:= ET = Subscript[m, 0] v0.v0/2 + Subscript[m, 3] v3.v3/2 + (J theta'[t]^2)/
     2 // FullSimplify;
 Collect[%, {x'[t], y'[t], alpha'[t], a'[t]}] // Simplify;
-In[294]:= vars = {r0, a[t], theta[t], alpha[t]} // Flatten;
+In[484]:= vars = {r0, a[t], theta[t], alpha[t]} // Flatten;
 vars1 = Flatten[{r0, a[t], theta[t], alpha[t], Derivative[1][alpha][t]}];
 Q = ((D[r0, #].F0 + D[r1, #].F1 + D[r2, #].F2 + D[r3, #].F3) & /@ 
     vars);
@@ -74,7 +58,7 @@ eq0 = MapIndexed[
    Simplify;
 tk = 3600 24 5;
 tk = 3000;
-In[300]:= params = {Subscript[k, x] -> .0 , Subscript[k, xt] -> .0, 
+In[490]:= params = {Subscript[k, x] -> .0 , Subscript[k, xt] -> .0, 
    Subscript[k, alpha] -> 0, Subscript[k, alphat] -> 0, 
    Subscript[m, 0] -> 200, Subscript[m, 3] -> 1000, J -> .001000, 
    p -> .2, n -> 0.008263297560335526, l -> 2};
@@ -98,7 +82,7 @@ Labeled[Plot[{Evaluate[y[t] /. sol]}, {t, 0, tk}, PlotRange -> All,
    ImageSize -> Large, PlotLegends -> {"y(t)"}], {"t,s", 
    "y"}, {Bottom, Left}];
 Export["images/2sph_no_u_y.png", %];
-In[310]:= params = {Subscript[k, x] -> .0 , Subscript[k, xt] -> .0, 
+In[500]:= params = {Subscript[k, x] -> .0 , Subscript[k, xt] -> .0, 
    Subscript[k, alpha] -> -5, Subscript[k, alphat] -> -2, 
    Subscript[m, 0] -> 200, Subscript[m, 3] -> 1000, J -> .001000, 
    p -> .2, n -> 0.008263297560335526, l -> 2};
@@ -122,10 +106,11 @@ Labeled[Plot[{Evaluate[y[t] /. sol]}, {t, 0, tk}, PlotRange -> All,
    ImageSize -> Large, PlotLegends -> {"y(t)"}], {"t,s", 
    "y"}, {Bottom, Left}];
 Export["images/2sph_alpha_u_y.png", %];
-In[320]:= params = {Subscript[k, x] -> .1 , Subscript[k, xt] -> .1, 
+In[510]:= params = {Subscript[k, x] -> .1 , Subscript[k, xt] -> .1, 
    Subscript[k, alpha] -> -5, Subscript[k, alphat] -> -2, 
    Subscript[m, 0] -> 200, Subscript[m, 3] -> 1000, J -> .001000, 
    p -> .2, n -> 0.008263297560335526, l -> 2};
+tk = 30000;
 sol = NDSolve[{eq0 //. params, x[0] == 0, y[0] == 0, a[0] == 5.4, 
     theta[0] == 0, alpha[0] == 0, x'[0] == 0, y'[0] == 0, a'[0] == 0, 
     theta'[0] == 0, alpha'[0] == 0.01}, vars1, {t, 0, tk}, 
@@ -146,6 +131,6 @@ Labeled[Plot[{Evaluate[y[t] /. sol]}, {t, 0, tk}, PlotRange -> All,
    ImageSize -> Large, PlotLegends -> {"y(t)"}], {"t,s", 
    "y"}, {Bottom, Left}];
 Export["images/2sph_full_u_y.png", %];
-In[330]:= nb = InputNotebook[];
+In[521]:= nb = InputNotebook[];
 fn = FileNameJoin[{NotebookDirectory[], "2spheres.txt"}];
 FrontEndExecute[FrontEndToken[nb, "Save", {fn, "Text"}]]
