@@ -1,11 +1,11 @@
-\section{Моделирование движения пассивного космического аппарата цилиндрической формы с активным космическим аппаратом}
+\section{Моделирование движения пассивного космического аппарата цилиндрической формы и активного космического аппарата}
 \label{SEC:2SPH_MSM}
 
-В модели из раздела \ref{SEC:2SPH} заменим представление аппаратов как материальных точек на заряженные сферы по методу многих сфер для моделирования движения относительно центра масс пассивного космического аппарата (рис. \ref{ris:2sph_msm}).
+Будем рассматривать управляемое движение пассивного космического аппарата цилиндрической формы, который заменим на три заряженные сферы и будем моделировать его движение по методу многих сфер, и активного космического аппарата, движение которого будем моделировать как движение внешней сферы по методу многих сфер (рис. \ref{ris:2sph_msm}).
 
 \begin{figure}[H]
 	\center{\includegraphics[scale=0.15]{2sph_msm.jpg}}
-	\caption{Замена космических аппаратов двумя материальными точками}
+	\caption{Движение пассивного КА и активного КА по методу многих сфер}
 	\label{ris:2sph_msm}
 \end{figure}
 
@@ -91,14 +91,33 @@
 
 Далее получим обратную матрицу к матрице $[C_m]^{-1}$ (\ref{eq:2sph_msm_cm}), чем решим уравнение (\ref{eq:voltage_matr}) и получим заряды сфер аналогично разделу \ref{SEC:3SPH} (\ref{eq:3sph_q_eq}).
 
-Запишем кинетическую энергию системы:
+Запишем кинетическую энергию системы в инерциальной системе отсчета $O_1XY$:
 \begin{equation}
 \label{eq:2sph_msm_T}
 	T = m_0 \frac{\norm{\vec{v}_0}^2}{2} + m_1 \frac{\norm{\vec{v}_1}^2}{2} + \frac{J\left(\frac{d\theta}{dt}\right)^2}{2},
 \end{equation}
-где $m_0$ – масса активного аппарата, $m_1$ – масса пассивного аппарата, $J$ – момент инерции.
+где $m_0$ – масса активного аппарата, $m_1$ – масса пассивного аппарата, $J$ – момент инерции пассивного аппарата.
 
-Обобщенными координатами в этой системе будут $x$, $y$, $a$, $\alpha$, $\theta$.
+Обобщенными координаты:
+\begin{equation}
+\label{eq:2sph_msm_qj}
+	\begin{pmatrix}
+		q_x \\
+		q_y \\
+		q_a \\
+		q_\alpha \\
+		q_\theta
+	\end{pmatrix} 
+	=
+	\begin{pmatrix}
+		x \\
+		y \\
+		a \\
+		\alpha \\
+		\theta
+	\end{pmatrix}.
+\end{equation}
+
 Обобщенные силы будут иметь вид:
 \begin{equation}
 \label{eq:2sph_msm_Q}
@@ -122,7 +141,7 @@ $F_0$ – cила, действующая на активный аппарат:
 \label{eq:2sph_msm_f0_u}
 	\vec{F}_0 = \vec{P} - (\vec{F}_1 + \vec{F}_2 + \vec{F}_3) + \vec{U},
 \end{equation}
-где $U$ – управляющая тяга (\ref{eq:2sph_u_ful}) из раздела \ref{SEC:2SPH}.
+где $U$ – управляющая тяга (\ref{eq:2sph_u_full}) из раздела \ref{SEC:2SPH}.
 
 Подставив (\ref{eq:2sph_msm_T}) и (\ref{eq:2sph_msm_Q}) в уравнение Лагранжа второго рода (\ref{eq:3sph_lag}) и численно решив получившуюся систему найдем зависимости $x$, $y$, $a$, $\alpha$, $\theta$ от времени.
 Зададим параметры системы $m_0 = 200$кг, $m_1=1000$кг, $p=0.2$H, $n=8.3 * 10^{-3}$, $\phi = 20000$В, $R_1 = 0.5$м, $R_{2a} = R_{2c} = 0.59$м, $R_{2b} = 0.65$м, $l = 1.5$м, $d = 15$м, $J = 1000$кг$\cdot$м${}^2$ и параметры управления $k_\alpha = -5$,$k_{\alpha t} = -2$,$k_x = 0.1$,$k_{x t} = 0.1$.
@@ -146,34 +165,34 @@ $F_0$ – cила, действующая на активный аппарат:
 
 \begin{figure}[H]
 	\center{\includegraphics[scale=0.7]{2sph_msm_no_u_a.png}}
-	\caption{$a$ для заданных параметров}
+	\caption{Зависимость координаты $a$ от времени $t$ для заданных параметров}
 	\label{ris:2sph_msm_a_no_u}
 \end{figure}
 \begin{figure}[H]
 	\center{\includegraphics[scale=0.7]{2sph_msm_no_u_alpha.png}}
-	\caption{$\alpha$ для заданных параметров}
+	\caption{Зависимость координаты $\alpha$ от времени $t$ для заданных параметров}
 	\label{ris:2sph_msm_alpha_no_u}
 \end{figure} 
 \begin{figure}[H]
 	\center{\includegraphics[scale=0.7]{2sph_msm_no_u_x.png}}
-	\caption{$x$ для заданных параметров}
+	\caption{Зависимость координаты $x$ от времени $t$ для заданных параметров}
 	\label{ris:2sph_msm_x_no_u}
 \end{figure} 
 \begin{figure}[H]
 	\center{\includegraphics[scale=0.7]{2sph_msm_no_u_y.png}}
-	\caption{$y$ для заданных параметров}
+	\caption{Зависимость координаты $y$ от времени $t$ для заданных параметров}
 	\label{ris:2sph_msm_y_no_u}
 \end{figure} 
 \begin{figure}[H]
 	\center{\includegraphics[scale=0.7]{2sph_msm_no_u_theta.png}}
-	\caption{$\theta$ для заданных параметров}
+	\caption{Зависимость координаты $\theta$ от времени $t$ для заданных параметров}
 	\label{ris:2sph_msm_theta_no_u}
 \end{figure}
 
 Как видно из рисунков \ref{ris:2sph_msm_a_no_u} - \ref{ris:2sph_msm_y_no_u} характер движения не поменялся в сравнении с вычислениями из раздела \ref{SEC:2SPH}.
 Но по рисунку \ref{ris:2sph_msm_theta_no_u} видно, что пассивный аппарат закручивается вокруг центра масс.
 При сопоставимом расстоянии между аппаратами и размерами пассивного аппарата это может вызывать столкновение и короткое замыкание.
-Для предотвращения закручивания используем управление, предложенное Шаубом в \cite{3sph}.
+Для предотвращения закручивания используем дополнительное управление, предложенное Шаубом в \cite{3sph}.
 
 Добавим:
 \begin{equation}
@@ -186,27 +205,27 @@ $F_0$ – cила, действующая на активный аппарат:
 
 \begin{figure}[H]
 	\center{\includegraphics[scale=0.7]{2sph_msm_full_u_a.png}}
-	\caption{$a$ для заданных параметров с управлением по $\theta$}
+	\caption{Зависимость координаты $a$ от времени $t$ для заданных параметров с управлением по $\theta$}
 	\label{ris:2sph_msm_a_full_u}
 \end{figure}
 \begin{figure}[H]
 	\center{\includegraphics[scale=0.7]{2sph_msm_full_u_alpha.png}}
-	\caption{$\alpha$ для заданных параметров с управлением по $\theta$}
+	\caption{Зависимость координаты $\alpha$ от времени $t$ для заданных параметров с управлением по $\theta$}
 	\label{ris:2sph_msm_alpha_full_u}
 \end{figure} 
 \begin{figure}[H]
 	\center{\includegraphics[scale=0.7]{2sph_msm_full_u_x.png}}
-	\caption{$x$ для заданных параметров с управлением по $\theta$}
+	\caption{Зависимость координаты $x$ от времени $t$ для заданных параметров с управлением по $\theta$}
 	\label{ris:2sph_msm_x_full_u}
 \end{figure} 
 \begin{figure}[H]
 	\center{\includegraphics[scale=0.7]{2sph_msm_full_u_y.png}}
-	\caption{$y$ для заданных параметров с управлением по $\theta$}
+	\caption{Зависимость координаты $y$ от времени $t$ для заданных параметров с управлением по $\theta$}
 	\label{ris:2sph_msm_y_full_u}
 \end{figure} 
 \begin{figure}[H]
 	\center{\includegraphics[scale=0.7]{2sph_msm_full_u_theta.png}}
-	\caption{$\theta$ для заданных параметров с управлением по $\theta$}
+	\caption{Зависимость координаты $\theta$ от времени $t$ для заданных параметров с управлением по $\theta$}
 	\label{ris:2sph_msm_theta_full_u}
 \end{figure}
 
