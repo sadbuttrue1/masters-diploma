@@ -1,4 +1,4 @@
-In[81]:= fontName = "Times";
+"S"In[81]:= fontName = "Times";
 SetOptions[Plot, 
  FrameStyle -> Directive[Thickness[0.002], 13, fontName], 
  GridLines -> Automatic, 
@@ -79,7 +79,7 @@ Export["images/msm_flow_d=15_no_fix.png",
    Plot[{Evaluate[Sa[t] //. params /. sol], 
      Evaluate[Sc[t] //. params /. sol]}, {t, 0, tk}, 
     AxesLabel -> {"t,s", "theta"}, PlotRange -> All, ImageSize -> Large, 
-    PlotLegends -> {"Sa", "Sc"}], {"t,s", "Q"}, {Bottom, Left}]];
+    PlotLegends -> {"Sa", "Sc"}], {"t,s", "S"}, {Bottom, Left}]];
 Export["images/msm_theta_d=15.png", 
   Labeled[
    Plot[{Evaluate[theta[t] /. sol], Evaluate[theta[t] /. sol2]}, {t, 0, tk}, 
@@ -91,7 +91,7 @@ Export["images/msm_flow_d=15.png",
      Evaluate[Sc[t] //. params /. sol], 
      Evaluate[Sa[t] //. params //. theta[t] -> 0]}, {t, 0, tk}, 
     AxesLabel -> {"t,s", "theta"}, PlotRange -> All, ImageSize -> Large, 
-    PlotLegends -> {"Sa", "Sc", "Fixed"}], {"t,s", "Q"}, {Bottom, 
+    PlotLegends -> {"Sa", "Sc", "Fixed"}], {"t,s", "S"}, {Bottom, 
     Left}]];
 In[118]:= params = {phi -> 20000, Subscript[k, c] -> 8.99 10^9, R2a -> .59, 
    R2c -> .59, R2b -> .65, R1 -> .5, l -> 1.5, d -> 20, J -> 1000};
@@ -111,7 +111,7 @@ Export["images/msm_flow_d=20.png",
      Evaluate[Sc[t] //. params /. sol], 
      Evaluate[Sa[t] //. params //. theta[t] -> 0]}, {t, 0, tk}, 
     AxesLabel -> {"t,s", "theta"}, PlotRange -> All, ImageSize -> Large, 
-    PlotLegends -> {"Sa", "Sc", "Fixed"}], {"t,s", "Q"}, {Bottom, 
+    PlotLegends -> {"Sa", "Sc", "Fixed"}], {"t,s", "S"}, {Bottom, 
     Left}]];
 
 In[126]:= params = {phi -> 20000, Subscript[k, c] -> 8.99 10^9, R2a -> .59, 
@@ -132,7 +132,7 @@ Export["images/msm_flow_d=10.png",
      Evaluate[Sc[t] //. params /. sol], 
      Evaluate[Sa[t] //. params //. theta[t] -> 0]}, {t, 0, tk}, 
     AxesLabel -> {"t,s", "theta"}, PlotRange -> All, ImageSize -> Large, 
-    PlotLegends -> {"Sa", "Sc", "Fixed"}], {"t,s", "Q"}, {Bottom, 
+    PlotLegends -> {"Sa", "Sc", "Fixed"}], {"t,s", "S"}, {Bottom, 
     Left}]];
 In[134]:= params = {phi -> 20000, Subscript[k, c] -> 8.99 10^9, R2a -> .59, 
    R2c -> .59, R2b -> .65, R1 -> .5, l -> 1.5, d -> 5, J -> 1000};
@@ -152,7 +152,7 @@ Export["images/msm_flow_d=5.png",
      Evaluate[Sc[t] //. params /. sol], 
      Evaluate[Sa[t] //. params //. theta[t] -> 0]}, {t, 0, tk}, 
     AxesLabel -> {"t,s", "theta"}, PlotRange -> All, ImageSize -> Large, 
-    PlotLegends -> {"Sa", "Sc", "Fixed"}], {"t,s", "Q"}, {Bottom, 
+    PlotLegends -> {"Sa", "Sc", "Fixed"}], {"t,s", "S"}, {Bottom, 
     Left}]];
 In[142]:= params = {phi -> 20000, Subscript[k, c] -> 8.99 10^9, R2a -> .59, 
    R2c -> .59, R2b -> .65, R1 -> .5, l -> 1.5, d -> 2.5, J -> 1000};
@@ -172,7 +172,7 @@ Export["images/msm_flow_d=2.5.png",
      Evaluate[Sc[t] //. params /. sol], 
      Evaluate[Sa[t] //. params //. theta[t] -> 0]}, {t, 0, tk}, 
     AxesLabel -> {"t,s", "theta"}, PlotRange -> All, ImageSize -> Large, 
-    PlotLegends -> {"Sa", "Sc", "Fixed"}], {"t,s", "Q"}, {Bottom, 
+    PlotLegends -> {"Sa", "Sc", "Fixed"}], {"t,s", "S"}, {Bottom, 
     Left}]];
 In[150]:= params = {phi -> 20000, Subscript[k, c] -> 8.99 10^9, R2a -> .59, 
    R2c -> .59, R2b -> .65, R1 -> .5, l -> 1.5, d -> 1.8, J -> 1000};
@@ -192,7 +192,7 @@ Export["images/msm_flow_d=1.8.png",
      Evaluate[Sc[t] //. params /. sol], 
      Evaluate[Sa[t] //. params //. theta[t] -> 0]}, {t, 0, tk}, 
     AxesLabel -> {"t,s", "theta"}, PlotRange -> All, ImageSize -> Large, 
-    PlotLegends -> {"Sa", "Sc", "Fixed"}], {"t,s", "Q"}, {Bottom, 
+    PlotLegends -> {"Sa", "Sc", "Fixed"}], {"t,s", "S"}, {Bottom, 
     Left}]];
 In[158]:= nb = InputNotebook[];
 fn = FileNameJoin[{NotebookDirectory[], "3spheres.txt"}];
