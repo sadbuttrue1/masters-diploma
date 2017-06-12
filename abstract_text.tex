@@ -158,7 +158,7 @@
 \end{equation*}
 
 Обобщенные координаты:
-\begin{equation}
+\begin{equation*}
 \label{eq:2sph_qj}
 	\begin{pmatrix}
 		q_x \\
@@ -173,19 +173,19 @@
 		a \\
 		\alpha \\
 	\end{pmatrix}.
-\end{equation}
+\end{equation*}
 
 Обобщенные силы будут иметь вид:
-\begin{equation}
+\begin{equation*}
 \label{eq:2sph_Q}
 	Q_j = \frac{\partial r_0}{\partial q_j} \cdot F_0 + \frac{\partial r_1}{\partial q_j} \cdot F_1.
-\end{equation}
+\end{equation*}
 
 Кинетическая энергия имеет вид:
-\begin{equation}
+\begin{equation*}
 \label{eq:2sph_T}
 	T = m_0 \frac{\norm{\vec{v}_0}^2}{2} + m_1 \frac{\norm{\vec{v}_1}^2}{2},
-\end{equation}
+\end{equation*}
 где $m_i$ – массы аппаратов, $v_i$ – скорости аппаратов.
 
 Имея это, решим уравнение Лагранжа второго рода.
@@ -215,7 +215,97 @@
 
 С управление $U$ координаты $x$, $y$, $a$ и $\alpha$ стремятся к своим устойчивым положениям: $x$ колеблется около 0, $y$ растет,  $a$ колеблется около $0.5$, $\alpha$ колеблется около 0.
 
+\textbf{Глава 4} описывает моделирование движения пассивного космического аппарата цилиндрической формы и активного космического аппарата методом многих сфер. Фактически, в этой главе объединяются результаты предыдущих двух глав.
+Схема взаимодействия представлена на рисунке \ref{ris:2sph_msm}.
 
+\begin{figure}[H]
+	\center{\includegraphics[scale=0.5]{2sph_msm.png}}
+	\caption{Движение пассивного КА и активного КА по методу многих сфер}
+	\label{ris:2sph_msm}
+\end{figure}
+
+Запишем кинетическую энергию системы в инерциальной системе отсчета $O_1XY$:
+\begin{equation*}
+\label{eq:2sph_msm_T}
+	T = m_0 \frac{\norm{\vec{v}_0}^2}{2} + m_1 \frac{\norm{\vec{v}_1}^2}{2} + \frac{J\left(\frac{d\theta}{dt}\right)^2}{2},
+\end{equation*}
+где $m_0$ – масса активного аппарата, $m_1$ – масса пассивного аппарата, $J$ – момент инерции пассивного аппарата.
+
+Обобщенными координаты:
+\begin{equation*}
+\label{eq:2sph_msm_qj}
+	\begin{pmatrix}
+		q_x \\
+		q_y \\
+		q_a \\
+		q_\alpha \\
+		q_\theta
+	\end{pmatrix} 
+	=
+	\begin{pmatrix}
+		x \\
+		y \\
+		a \\
+		\alpha \\
+		\theta
+	\end{pmatrix}.
+\end{equation*}
+
+Обобщенные силы будут иметь вид:
+\begin{equation*}
+\label{eq:2sph_msm_Q}
+	Q_j = \frac{\partial r_0}{\partial q_j} \cdot F_0 + \frac{\partial r_1}{\partial q_j} \cdot F_1 +\frac{\partial r_2}{\partial q_j} \cdot F_2 +\frac{\partial r_3}{\partial q_j} \cdot F_3,
+\end{equation*}
+где $q_j$ – обобщенные координаты, $F_1$ – сила кулоновского взаимодействия для сферы $A$, $F_2$ – сила кулоновского взаимодействия для сферы $B$, $F_3$ – сила кулоновского взаимодействия для сферы $C$:
+\begin{equation*}
+\label{eq:2sph_msm_f1}
+	\vec{F}_i = -\frac{k_c q_1 q_{i}}{r_i^3}\vec{R}_i,
+\end{equation*}
+$F_0$ – cила, действующая на активный аппарат:
+\begin{equation*}
+\label{eq:2sph_msm_f0_u}
+	\vec{F}_0 = \vec{P} - (\vec{F}_1 + \vec{F}_2 + \vec{F}_3) + \vec{U},
+\end{equation*}
+где $U$ – управляющая тяга из предыдущей главы.
+
+Добавим управляющую функцию:
+\begin{equation*}
+\label{eq:2sph_msm_f}
+	f = - k_\theta \frac{d\theta}{dt}
+\end{equation*}
+к обобщенной силе $Q_\theta$.
+
+Имея это, решим уравнение Лагранжа второго рода.
+
+Результаты численного моделирования для движения с управлением по $\theta$ при $k_\theta = 0.1$ представлены на рисунках \ref{ris:2sph_msm_a_full_u} - \ref{ris:2sph_msm_theta_full_u}.
+
+\begin{figure}[H]
+	\center{\includegraphics[scale=0.4]{2sph_msm_full_u_a.png}}
+	\caption{Зависимость координаты $a$ от времени $t$ с управлением по $\theta$}
+	\label{ris:2sph_msm_a_full_u}
+\end{figure}
+\begin{figure}[H]
+	\center{\includegraphics[scale=0.4]{2sph_msm_full_u_alpha.png}}
+	\caption{Зависимость координаты $\alpha$ от времени $t$ с управлением по $\theta$}
+	\label{ris:2sph_msm_alpha_full_u}
+\end{figure} 
+\begin{figure}[H]
+	\center{\includegraphics[scale=0.4]{2sph_msm_full_u_x.png}}
+	\caption{Зависимость координаты $x$ от времени $t$ с управлением по $\theta$}
+	\label{ris:2sph_msm_x_full_u}
+\end{figure} 
+\begin{figure}[H]
+	\center{\includegraphics[scale=0.4]{2sph_msm_full_u_y.png}}
+	\caption{Зависимость координаты $y$ от времени $t$ с управлением по $\theta$}
+	\label{ris:2sph_msm_y_full_u}
+\end{figure} 
+\begin{figure}[H]
+	\center{\includegraphics[scale=0.4]{2sph_msm_full_u_theta.png}}
+	\caption{Зависимость координаты $\theta$ от времени $t$ с управлением по $\theta$}
+	\label{ris:2sph_msm_theta_full_u}
+\end{figure}
+
+Таким образом, как видно из рисунка \ref{ris:2sph_msm_theta_full_u}, управляющая функция (\ref{eq:2sph_msm_f}) позволяет остановить раскручивание пассивного аппарата вокруг центра масс и при этом, как видно из рисунков \ref{ris:2sph_msm_a_full_u} - \ref{ris:2sph_msm_y_full_u} не влияет на характер движения аппаратов.
 
 \section*{Заключение}
 
