@@ -400,6 +400,61 @@ $S_a = - k_c q_1 q_{2a}$ и $S_c = - k_c q_1 q_{2c}$.
 \end{frame}
 
 \begin{frame}
+\frametitle{Моделирование движения пассивного и активного КА}
+\framesubtitle{Движение пассивного КА и активного КА по методу многих сфер}
+	\begin{figure}[H]
+		\center{\includegraphics[scale=0.3]{2sph_msm.png}}
+	\end{figure}
+\end{frame}
+
+
+\begin{frame}
+\frametitle{Моделирование движения пассивного и активного КА}
+\framesubtitle{Уравнения движения}
+\begin{columns}[onlytextwidth]
+	\begin{column}{0.5\textwidth}
+	\begin{equation*}
+		T = m_0 \frac{\norm{\vec{v}_0}^2}{2} + m_1 \frac{\norm{\vec{v}_1}^2}{2} + \frac{J\left(\frac{d\theta}{dt}\right)^2}{2},
+	\end{equation*}	
+	\begin{equation*}
+			(q_x,q_y,q_a,q_\alpha,q_\theta)^T=(x,y,a,\alpha,\theta)^T,
+	\end{equation*}
+	\begin{equation*}
+		Q_j = \frac{\partial r_0}{\partial q_j} \cdot F_0 + \frac{\partial r_1}{\partial q_j} \cdot F_1 +\frac{\partial r_2}{\partial q_j} \cdot F_2 +\frac{\partial r_3}{\partial q_j} \cdot F_3,
+	\end{equation*}
+	\begin{equation*}
+		\vec{F}_1 = -\frac{k_c q_1 q_{2a}}{r_a^3}\vec{R}_a,
+	\end{equation*}
+	\begin{equation*}
+		\vec{F}_2 = -\frac{k_c q_1 q_{2b}}{r_b^3}\vec{R}_b,
+	\end{equation*}
+	\begin{equation*}
+		\vec{F}_3 = -\frac{k_c q_1 q_{2c}}{r_c^3}\vec{R}_c,
+	\end{equation*}
+	\begin{equation*}
+		\vec{F}_0 = \vec{P} - (\vec{F}_1 + \vec{F}_2 + \vec{F}_3) + \vec{U},
+	\end{equation*}
+	\end{column}
+	\begin{column}{0.5\textwidth}
+	\begin{equation*}
+		\begin{cases}
+			x(0) = 0, \\
+			y(0) = 0, \\
+			a(0) = 5.4, \\
+			\alpha(0) = 0,\\
+			\theta(0) = 0.4,\\
+			x'(0) = 0, \\
+			y'(0) = 0, \\
+			a'(0) = 0, \\
+			\alpha'(0) = 0.01\\
+			\theta'(0) = 0.
+		\end{cases}
+	\end{equation*}
+	\end{column}
+\end{columns}
+\end{frame}
+
+\begin{frame}
 \frametitle{Заключение}
 В работе построены новые математические моделей движения указанных космических систем и получены новые результаты, подтверждающих возможность увода космических объектов путем толканий при использовании электростатических сил. Найдены новые законы управления космической системой, предназначенной для увода космического мусора.
 
