@@ -1,0 +1,62 @@
+\documentclass[10pt,pdf,hyperref={unicode}]{beamer}
+
+% \documentclass[aspectratio=43]{beamer}
+% \documentclass[aspectratio=1610]{beamer}
+% \documentclass[aspectratio=169]{beamer}
+
+\usepackage{lmodern}
+
+% подключаем кириллицу 
+\usepackage[T2A]{fontenc}
+\usepackage[utf8]{inputenc}
+
+\usepackage{amssymb,amsfonts,amsmath,mathtext,cite,enumerate,amsthm,mathenv} %подключаем нужные пакеты расширений
+
+% отключить клавиши навигации
+\setbeamertemplate{navigation symbols}{}
+
+% тема оформления
+\usetheme{CambridgeUS}
+
+\makeatother
+\setbeamertemplate{footline}
+{
+  \leavevmode%
+  \hbox{%
+  \begin{beamercolorbox}[wd=.12\paperwidth,ht=2.25ex,dp=1ex,center]{author in head/foot}%
+    \usebeamerfont{author in head/foot}\insertshortauthor
+  \end{beamercolorbox}%
+  \begin{beamercolorbox}[wd=.88\paperwidth,ht=2.25ex,dp=1ex,center]{title in head/foot}%
+    \usebeamerfont{title in head/foot}\insertshorttitle\hspace*{1em}
+    \insertframenumber{} / \inserttotalframenumber\hspace*{1ex}
+  \end{beamercolorbox}}%
+  \vskip0pt%
+}
+% цветовая схема
+\usecolortheme{seahorse}
+
+\graphicspath{{images/}}%путь к рисункам
+
+\title[Удаление космического мусора путем электростатического взаимодействия с активным КА]{Выпускная квалификационная работа магистра\\
+Удаление космического мусора путем электростатического взаимодействия с активным космическим аппаратом}
+\author[Асланов Е.В.]{Научный руководитель: д.т.н., проф. Асланов В. С.\\
+Выпускник: Асланов Е.В. гр. 1225 М 403}
+\date[]{}
+% \logo{\includegraphics[height=5mm]{images/logo.png}\vspace{-7pt}}
+
+\begin{document}
+
+% титульный слайд
+\begin{frame}
+	\titlepage
+	\begin{center}
+		Самара, 2017
+	\end{center}
+\end{frame} 
+
+\begin{frame}
+	\begin{center}
+		Спасибо за внимание!
+	\end{center}
+\end{frame}
+\end{document}
