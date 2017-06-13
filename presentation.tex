@@ -455,6 +455,81 @@ $S_a = - k_c q_1 q_{2a}$ и $S_c = - k_c q_1 q_{2c}$.
 \end{frame}
 
 \begin{frame}
+\frametitle{Моделирование движения пассивного и активного КА}
+\framesubtitle{Результаты моделирования}
+\begin{columns}[onlytextwidth]
+	\begin{column}{0.5\textwidth}
+		\begin{figure}[H]
+			\center{\includegraphics[scale=0.2]{2sph_msm_no_u_a.png}}
+		\end{figure}
+		\scriptsize{Зависимость координаты $a$ от времени $t$}
+		\begin{figure}[H]
+			\center{\includegraphics[scale=0.2]{2sph_msm_no_u_alpha.png}}
+		\end{figure} 
+		\scriptsize{Зависимость координаты $\alpha$ от времени $t$}
+	\end{column}
+	\begin{column}{0.5\textwidth}
+		\begin{figure}[H]
+			\center{\includegraphics[scale=0.2]{2sph_msm_no_u_x.png}}
+		\end{figure} 
+		\scriptsize{Зависимость координаты $x$ от времени $t$}
+		\begin{figure}[H]
+			\center{\includegraphics[scale=0.2]{2sph_msm_no_u_y.png}}
+		\end{figure} 
+		\scriptsize{Зависимость координаты $y$ от времени $t$}
+	\end{column}
+\end{columns}
+\end{frame}
+\begin{frame}
+\frametitle{Моделирование движения пассивного и активного КА}
+\framesubtitle{Результаты моделирования}
+	\begin{figure}[H]
+		\center{\includegraphics[scale=0.35]{2sph_msm_no_u_theta.png}}
+	\end{figure} 
+	\begin{center}\scriptsize{Зависимость координаты $\theta$ от времени $t$}\end{center}
+	Добавим:
+	\begin{equation*}
+		f = - k_\theta \frac{d\theta}{dt}
+	\end{equation*}
+	к обобщенной силе $Q_\theta$.
+\end{frame}
+
+\begin{frame}
+\frametitle{Моделирование движения пассивного и активного КА}
+\framesubtitle{Результаты моделирования с управлением по $\theta$ при $k_\theta = 0.1$}
+\begin{columns}[onlytextwidth]
+	\begin{column}{0.5\textwidth}
+		\begin{figure}[H]
+			\center{\includegraphics[scale=0.2]{2sph_msm_full_u_a.png}}
+		\end{figure}
+		\scriptsize{Зависимость координаты $a$ от времени $t$}
+		\begin{figure}[H]
+			\center{\includegraphics[scale=0.2]{2sph_msm_full_u_alpha.png}}
+		\end{figure} 
+		\scriptsize{Зависимость координаты $\alpha$ от времени $t$}
+	\end{column}
+	\begin{column}{0.5\textwidth}
+		\begin{figure}[H]
+			\center{\includegraphics[scale=0.2]{2sph_msm_full_u_x.png}}
+		\end{figure} 
+		\scriptsize{Зависимость координаты $x$ от времени $t$}
+		\begin{figure}[H]
+			\center{\includegraphics[scale=0.2]{2sph_msm_full_u_y.png}}
+		\end{figure} 
+		\scriptsize{Зависимость координаты $y$ от времени $t$}
+	\end{column}
+\end{columns}
+\end{frame}
+\begin{frame}
+\frametitle{Моделирование движения пассивного и активного КА}
+\framesubtitle{Результаты моделирования с управлением по $\theta$ при $k_\theta = 0.1$}
+	\begin{figure}[H]
+		\center{\includegraphics[scale=0.35]{2sph_msm_full_u_theta.png}}
+	\end{figure} 
+	\begin{center}\scriptsize{Зависимость координаты $\theta$ от времени $t$}\end{center}
+\end{frame}
+
+\begin{frame}
 \frametitle{Заключение}
 В работе построены новые математические моделей движения указанных космических систем и получены новые результаты, подтверждающих возможность увода космических объектов путем толканий при использовании электростатических сил. Найдены новые законы управления космической системой, предназначенной для увода космического мусора.
 
